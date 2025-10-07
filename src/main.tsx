@@ -4,7 +4,7 @@ import "./index.css";
 import App from "./App.tsx";
 import { BrowserRouter } from "react-router";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { LangugeProvider } from "./components/context/LanguageContext.tsx";
+import { LangugeProvider } from "./context/LanguageContext.tsx";
 
 const queryClient = new QueryClient({
   defaultOptions: {
