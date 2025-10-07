@@ -567,7 +567,7 @@ export type ProfileQueryResult = {
 
 // Source: ../unai/src/lib/treatmentProjectsQuery.ts
 // Variable: treatmentProjectsQuery
-// Query: *[_type == "treatmentProject"] {  _id,  title,  slug,  date,  description,}
+// Query: *[_type == "treatmentProject"] {  _id,  title,  slug,  date,  description,  image { "url": asset->url },}
 export type TreatmentProjectsQueryResult = Array<{
   _id: string;
   title: {
@@ -614,6 +614,9 @@ export type TreatmentProjectsQueryResult = Array<{
       _key: string;
     }>;
   } | null;
+  image: {
+    url: string | null;
+  } | null;
 }>;
 
 // Query TypeMap
@@ -622,6 +625,6 @@ declare module "@sanity/client" {
   interface SanityQueries {
     "*[_type == \"directionProject\"] {\n  _id,\n  title,\n  slug,\n  date,\n  description,\n  vimeoId,\n  projectType\n}": DirectionProjectsQueryResult;
     "*[_type == \"profile\"][0] {\n  name,\n  manifesto,\n  about\n}": ProfileQueryResult;
-    "*[_type == \"treatmentProject\"] {\n  _id,\n  title,\n  slug,\n  date,\n  description,\n}": TreatmentProjectsQueryResult;
+    "*[_type == \"treatmentProject\"] {\n  _id,\n  title,\n  slug,\n  date,\n  description,\n  image { \"url\": asset->url },\n}": TreatmentProjectsQueryResult;
   }
 }

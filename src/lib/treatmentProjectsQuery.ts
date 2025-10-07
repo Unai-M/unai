@@ -7,6 +7,7 @@ const treatmentProjectsQuery = defineQuery(`*[_type == "treatmentProject"] {
   slug,
   date,
   description,
+  image { "url": asset->url },
 }`);
 
 export async function getTreatmentProjects() {

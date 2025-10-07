@@ -1,6 +1,7 @@
 import { useTreatmentProjects } from "@/hooks/useTreatmentProjects";
 import Loading from "@/components/Loading";
 import useLanguage from "@/hooks/useLanguage";
+import { imageSize } from "@/constants/imageSize";
 
 export default function Treatment() {
   const { data, isLoading, error } = useTreatmentProjects();
@@ -21,7 +22,13 @@ export default function Treatment() {
               ? project.title?.en || project.title?.es
               : project.title?.es || project.title?.en;
 
-          return <div key={project._id}>{title ?? <em>Untitled</em>}</div>;
+          return (
+            <div key={project._id}>
+              {title ?? <em>Untitled</em>}
+
+              <img src={project.image?.url + imageSize.sm} />
+            </div>
+          );
         })
       ) : (
         <p>🤔</p>
