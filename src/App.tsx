@@ -1,6 +1,10 @@
 import NavMenu from "./components/NavMenu";
 import { useProfile } from "./hooks/useProfile";
 import { Routes, Route } from "react-router";
+import Direction from "./pages/Direction";
+import Treatment from "./pages/Treatment";
+import Manifesto from "./pages/Manifiesto";
+import Loading from "./components/Loading";
 
 function App() {
   const {
@@ -8,7 +12,7 @@ function App() {
     isLoading: isProfileLoading,
     error: profileError,
   } = useProfile();
-  if (isProfileLoading) return <div>...</div>;
+  if (isProfileLoading) return <Loading />;
   if (profileError) return <div>{profileError.message}</div>;
 
   return (
@@ -18,9 +22,9 @@ function App() {
       <Routes>
         <Route path="/" element={<div>Home</div>} />
         <Route path="/info" element={<div>Info</div>} />
-        <Route path="/direccion" element={<div>Direccion</div>} />
-        <Route path="/tratamiento" element={<div>Tratamiento</div>} />
-        <Route path="/manifiesto" element={<div>Manifiesto</div>} />
+        <Route path="/direccion" element={<Direction />} />
+        <Route path="/tratamiento" element={<Treatment />} />
+        <Route path="/manifiesto" element={<Manifesto />} />
       </Routes>
     </>
   );
