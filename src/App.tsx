@@ -1,4 +1,4 @@
-import NavMenu from "./components/NavMenu";
+import Header from "./components/Header";
 import { useProfile } from "./hooks/useProfile";
 import { Routes, Route } from "react-router";
 import Direction from "./pages/Direction";
@@ -18,7 +18,7 @@ function App() {
   return (
     <>
       {profile?.name && <h1 className="text-3xl font-bold">{profile.name}</h1>}
-      <NavMenu />
+      <Header />
       <Routes>
         <Route path="/" element={<div>Home</div>} />
         <Route path="/info" element={<div>Info</div>} />
