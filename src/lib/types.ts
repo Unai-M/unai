@@ -109,6 +109,7 @@ export type Profile = {
     }>;
   };
   manifestoVimeoId?: string;
+  reelVimeoId?: string;
   email?: string;
   links?: Array<{
     title?: string;
@@ -426,7 +427,7 @@ export type AllSanitySchemaTypes = Profile | TreatmentProject | DirectionProject
 export declare const internalGroqTypeReferenceTo: unique symbol;
 // Source: ../unai/src/lib/directionProjectsQuery.ts
 // Variable: directionProjectsQuery
-// Query: *[_type == "directionProject"] {  _id,  title,  slug,  date,  description,  vimeoId,  projectType}
+// Query: *[_type == "directionProject"] | order(date desc){  _id,  title,  slug,  date,  description,  vimeoId,  projectType -> {en, es},  previewImage { "url": asset->url },}
 export type DirectionProjectsQueryResult = Array<{
   _id: string;
   title: {
@@ -475,10 +476,11 @@ export type DirectionProjectsQueryResult = Array<{
   } | null;
   vimeoId: string | null;
   projectType: {
-    _ref: string;
-    _type: "reference";
-    _weak?: boolean;
-    [internalGroqTypeReferenceTo]?: "projectType";
+    en: string | null;
+    es: string | null;
+  } | null;
+  previewImage: {
+    url: string | null;
   } | null;
 }>;
 
@@ -623,7 +625,7 @@ export type TreatmentProjectsQueryResult = Array<{
 import "@sanity/client";
 declare module "@sanity/client" {
   interface SanityQueries {
-    "*[_type == \"directionProject\"] {\n  _id,\n  title,\n  slug,\n  date,\n  description,\n  vimeoId,\n  projectType\n}": DirectionProjectsQueryResult;
+    "*[_type == \"directionProject\"] | order(date desc){\n  _id,\n  title,\n  slug,\n  date,\n  description,\n  vimeoId,\n  projectType -> {en, es},\n  previewImage { \"url\": asset->url },\n}": DirectionProjectsQueryResult;
     "*[_type == \"profile\"][0] {\n  name,\n  manifesto,\n  about\n}": ProfileQueryResult;
     "*[_type == \"treatmentProject\"] {\n  _id,\n  title,\n  slug,\n  date,\n  description,\n  image { \"url\": asset->url },\n}": TreatmentProjectsQueryResult;
   }
