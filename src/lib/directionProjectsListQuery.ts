@@ -1,18 +1,16 @@
 import { client } from "./sanityClient";
 import { defineQuery } from "groq";
 
-const directionProjectsQuery =
+const directionProjectsListQuery =
   defineQuery(`*[_type == "directionProject"] | order(date desc){
   _id,
   title,
   slug,
   date,
-  description,
-  vimeoId,
   projectType -> {en, es},
   previewImage { "url": asset->url },
 }`);
 
-export async function getDirectionProjects() {
-  return client.fetch(directionProjectsQuery);
+export async function getDirectionProjectsList() {
+  return client.fetch(directionProjectsListQuery);
 }

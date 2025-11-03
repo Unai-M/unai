@@ -1,10 +1,10 @@
-import { useDirectionProjects } from "@/hooks/useDirectionProjects";
+import { useDirectionProjectsList } from "@/hooks/useDirectionProjectsList";
 import Loading from "@/components/Loading";
 import { motion } from "motion/react";
 import ProjectCard from "@/components/ProjectCard";
 
 export default function Direction() {
-  const { data, isLoading, error } = useDirectionProjects();
+  const { data, isLoading, error } = useDirectionProjectsList();
 
   if (isLoading) return <Loading />;
   if (error) return <div>Error: {error.message}</div>;
