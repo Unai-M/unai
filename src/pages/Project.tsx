@@ -1,7 +1,21 @@
+import { useState } from "react";
+import { useParams } from "react-router";
 import { NavLink } from "react-router";
 import { motion } from "motion/react";
+import { useProject } from "@/hooks/useProject";
+import Loading from "@/components/Loading";
+import ErrorPage from "./ErrorPage";
+import VimeoPlayer from "@/components/VimeoPlayer";
+import ProjectInfo from "@/components/ProjectInfo";
 
 export default function Project() {
+  const { slug } = useParams<{ slug: string }>();
+  const { data, isLoading, error } = useProject(slug!);
+  const [infoOpen, setInfoOpen] = useState(false);
+
+  if (isLoading) return <Loading />;
+  if (error) return <ErrorPage />;
+
   return (
     <motion.section
       initial={{ opacity: 0 }}
@@ -10,11 +24,27 @@ export default function Project() {
       exit={{ opacity: 0 }}
       className="no-doc-scroll fixed inset-0 z-100 flex h-screen w-full flex-col items-center justify-center overflow-hidden bg-black"
     >
-      {/* TODO: cargar data de proyecto especifico */}
-      <NavLink to="/">CERRAR</NavLink>
-      <h1>Project title</h1>
+      {/* TODO: add nice buttons */}
+      <div className="mb-4 flex w-full justify-between gap-2 px-4">
+        <div className="flex items-center gap-3">
+          {data?.title && <h1>{data?.title.es}</h1>}
+          <button onClick={() => setInfoOpen(!infoOpen)}>info</button>
+        </div>
+        <NavLink to="/">
+          <div className="bg-foreground text-background flex size-8 items-center justify-center rounded-full">
+            x
+          </div>
+        </NavLink>
+      </div>
+      {data?.vimeoId && (
+        <div className="w-[90vw]">
+          <VimeoPlayer url={data.vimeoId} />
+        </div>
+      )}
 
-      <p>project info</p>
+      {infoOpen && (
+        <ProjectInfo data={data} handleClose={() => setInfoOpen(false)} />
+      )}
     </motion.section>
   );
 }
