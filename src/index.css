@@ -1,30 +1,38 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 
+@font-face {
+  font-family: "Display";
+  font-weight: 200 700;
+  src: url("/fonts/GeneralSans-Variable.woff");
+}
+
 @custom-variant dark (&:is(.dark *));
 
 :root {
+  overscroll-behavior-y: none;
+
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   --radius: 0.625rem;
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.145 0 0);
+  --background: oklch(0.709 0 0);
+  --foreground: oklch(0.975 0.0115 205.2);
   --card: oklch(1 0 0);
   --card-foreground: oklch(0.145 0 0);
   --popover: oklch(1 0 0);
   --popover-foreground: oklch(0.145 0 0);
-  --primary: oklch(0.205 0 0);
+  --primary: oklch(0.2809 0.0415 75.2);
   --primary-foreground: oklch(0.985 0 0);
   --secondary: oklch(0.97 0 0);
   --secondary-foreground: oklch(0.205 0 0);
   --muted: oklch(0.97 0 0);
   --muted-foreground: oklch(0.556 0 0);
-  --accent: oklch(0.97 0 0);
+  --accent: oklch(0.7281 0.1773 46.35);
   --accent-foreground: oklch(0.205 0 0);
   --destructive: oklch(0.577 0.245 27.325);
-  --border: oklch(0.922 0 0);
+  --border: oklch(0.2367 0.1179 261.9);
   --input: oklch(0.922 0 0);
   --ring: oklch(0.708 0 0);
   --chart-1: oklch(0.646 0.222 41.116);
@@ -42,12 +50,14 @@
   --sidebar-ring: oklch(0.708 0 0);
 }
 
-body {
-  background-color: black;
-  color: hsl(40, 10%, 70%);
-}
-
 @theme inline {
+  /* --font-display: "Reenie Beanie", cursive; */
+  /* --font-display: "Grechen Fuemen", cursive; */
+  /* --font-display: "Grape Nuts", cursive; */
+  /* --font-display: "Homemade Apple", cursive; */
+  --default-font-family: sans-serif;
+  --font-display: "Display", sans-serif;
+
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
@@ -126,4 +136,8 @@ body {
   body {
     @apply bg-background text-foreground;
   }
+}
+
+:root:has(.no-doc-scroll) {
+  overflow: hidden;
 }

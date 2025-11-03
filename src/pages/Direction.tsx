@@ -1,31 +1,39 @@
 import { useDirectionProjects } from "@/hooks/useDirectionProjects";
 import Loading from "@/components/Loading";
-import useLanguage from "@/hooks/useLanguage";
+import { motion } from "motion/react";
+import ProjectCard from "@/components/ProjectCard";
 
 export default function Direction() {
   const { data, isLoading, error } = useDirectionProjects();
-  const { language } = useLanguage();
 
   if (isLoading) return <Loading />;
   if (error) return <div>Error: {error.message}</div>;
 
   return (
-    <section>
-      <h1 className="text-xl font-bold">
-        {language === "en" ? "Direction" : "Dirección"}
-      </h1>
-      {data?.length ? (
-        data.map((project) => {
-          const title =
-            language === "en"
-              ? project.title?.en || project.title?.es
-              : project.title?.es || project.title?.en;
-
-          return <div key={project._id}>{title ?? <em>Untitled</em>}</div>;
-        })
-      ) : (
-        <p>🤔</p>
-      )}
-    </section>
+    <motion.section className="_h-screen relative flex w-full flex-col items-center justify-center">
+      <div className="align-items-center grid w-3/4 grid-cols-6 gap-12 px-8">
+        {data?.length &&
+          data.map((project, index) => {
+            return (
+              <motion.div
+                initial={{ opacity: 0, scale: 0.8 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ amount: 0.4 }}
+                transition={{ duration: 0.6 }}
+                className={`items-start ${
+                  index % 5 === 0
+                    ? "col-span-4 col-start-2 row-span-2"
+                    : index % 3
+                      ? "col-span-3"
+                      : "col-span-3 col-start-4 row-span-2"
+                }`}
+                key={project._id}
+              >
+                <ProjectCard project={project} />
+              </motion.div>
+            );
+          })}
+      </div>
+    </motion.section>
   );
 }

@@ -7,6 +7,7 @@ export default function LanguageToggle() {
   return (
     <Button
       variant="outline"
+      className="bg-white/00 border-foreground/20 cursor-pointer"
       onClick={() => {
         setLanguage(language === "es" ? "en" : "es");
       }}

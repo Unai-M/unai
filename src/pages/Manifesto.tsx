@@ -2,8 +2,9 @@ import { PortableText } from "@portabletext/react";
 import { useProfile } from "@/hooks/useProfile";
 import Loading from "@/components/Loading";
 import useLanguage from "@/hooks/useLanguage";
+import { BlockContentComponent } from "../components/BlockContentComponent";
 
-export default function Manifiesto() {
+export default function Manifesto() {
   const {
     data: profile,
     isLoading: isProfileLoading,
@@ -20,8 +21,11 @@ export default function Manifiesto() {
       : profile?.manifesto?.es || profile?.manifesto?.en;
 
   return (
-    <section>
-      <PortableText value={Array.isArray(manifesto) ? manifesto : []} />
-    </section>
+    <div className="m-auto flex w-[80vw] max-w-prose flex-col gap-2">
+      <PortableText
+        value={Array.isArray(manifesto) ? manifesto : []}
+        components={BlockContentComponent}
+      />
+    </div>
   );
 }
