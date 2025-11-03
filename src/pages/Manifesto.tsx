@@ -3,17 +3,14 @@ import { useProfile } from "@/hooks/useProfile";
 import Loading from "@/components/Loading";
 import useLanguage from "@/hooks/useLanguage";
 import { BlockContentComponent } from "../components/BlockContentComponent";
+import ErrorPage from "./ErrorPage";
 
 export default function Manifesto() {
-  const {
-    data: profile,
-    isLoading: isProfileLoading,
-    error: profileError,
-  } = useProfile();
+  const { data: profile, isLoading: isProfileLoading, error } = useProfile();
   const { language } = useLanguage();
 
   if (isProfileLoading) return <Loading />;
-  if (profileError) return <div>{profileError.message}</div>;
+  if (error) return <ErrorPage error={error} />;
 
   const manifesto =
     language === "en"

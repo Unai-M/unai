@@ -3,7 +3,7 @@ import { PortableText } from "@portabletext/react";
 import { urlFor } from "@/lib/sanityImageUrl";
 
 interface ProjectInfoProps {
-  data: ProjectQueryResult;
+  data: ProjectQueryResult | undefined;
   handleClose: () => void;
 }
 export default function ProjectInfo({ data, handleClose }: ProjectInfoProps) {
@@ -20,7 +20,7 @@ export default function ProjectInfo({ data, handleClose }: ProjectInfoProps) {
           data.images.map((image) => (
             <img
               key={image._key}
-              src={urlFor(image).format("webp").width(300).url() ?? undefined}
+              src={urlFor(image).format("webp").width(300).url()}
             />
           ))}
       </div>

@@ -4,17 +4,14 @@ import Loading from "@/components/Loading";
 import useLanguage from "@/hooks/useLanguage";
 import { BlockContentComponent } from "../components/BlockContentComponent";
 import FloatingWindow from "@/components/ui/FloatingWindow";
+import ErrorPage from "./ErrorPage";
 
 export default function Info() {
-  const {
-    data: profile,
-    isLoading: isProfileLoading,
-    error: profileError,
-  } = useProfile();
+  const { data: profile, isLoading: isProfileLoading, error } = useProfile();
   const { language } = useLanguage();
 
   if (isProfileLoading) return <Loading />;
-  if (profileError) return <div>{profileError.message}</div>;
+  if (error) return <ErrorPage error={error} />;
 
   const about =
     language === "en"

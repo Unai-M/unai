@@ -2,12 +2,13 @@ import { useDirectionProjectsList } from "@/hooks/useDirectionProjectsList";
 import Loading from "@/components/Loading";
 import { motion } from "motion/react";
 import ProjectCard from "@/components/ProjectCard";
+import ErrorPage from "./ErrorPage";
 
 export default function Direction() {
   const { data, isLoading, error } = useDirectionProjectsList();
 
   if (isLoading) return <Loading />;
-  if (error) return <div>Error: {error.message}</div>;
+  if (error) return <ErrorPage error={error} />;
 
   return (
     <motion.section className="_h-screen relative flex w-full flex-col items-center justify-center">

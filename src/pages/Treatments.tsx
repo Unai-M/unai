@@ -12,13 +12,14 @@ import {
 } from "@/components/ui/carousel";
 import { BlockContentComponent } from "@/components/BlockContentComponent";
 import { PortableText } from "@portabletext/react";
+import ErrorPage from "./ErrorPage";
 
 export default function Treatment() {
   const { data, isLoading, error } = useTreatmentProjects();
   const { language } = useLanguage();
 
   if (isLoading) return <Loading />;
-  if (error) return <div>Error: {error.message}</div>;
+  if (error) return <ErrorPage error={error} />;
 
   return (
     <motion.section className="flex w-full justify-center sm:mx-24">
