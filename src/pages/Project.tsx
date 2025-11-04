@@ -14,8 +14,6 @@ export default function Project() {
   const { data, isLoading, error } = useProject(slug!);
   const [infoOpen, setInfoOpen] = useState(false);
 
-  if (isLoading) return <Loading />;
-
   return (
     <motion.section
       initial={{ opacity: 0 }}
@@ -24,6 +22,8 @@ export default function Project() {
       exit={{ opacity: 0 }}
       className="no-doc-scroll fixed inset-0 z-[100] flex h-screen w-full flex-col items-center justify-center overflow-hidden bg-black"
     >
+      {isLoading && <Loading />}
+
       {error ? (
         <>
           <ErrorPage error={error} />
@@ -33,7 +33,6 @@ export default function Project() {
         </>
       ) : (
         <>
-          {/* TODO: add nice buttons */}
           <div className="mb-4 flex w-full justify-between gap-2 px-4">
             <div className="flex items-center gap-3">
               {data?.title && <h1>{data.title.es}</h1>}
