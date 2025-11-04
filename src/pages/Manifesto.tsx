@@ -18,7 +18,7 @@ export default function Manifesto() {
       : profile?.manifesto?.es || profile?.manifesto?.en;
 
   return (
-    <div className="m-auto flex w-[80vw] max-w-prose flex-col gap-2">
+    <div className="mx-auto flex w-[80vw] max-w-prose flex-col gap-2 py-24">
       <PortableText
         value={Array.isArray(manifesto) ? manifesto : []}
         components={BlockContentComponent}
