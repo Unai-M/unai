@@ -23,7 +23,7 @@ export default function Direction() {
                 transition={{ duration: 0.6 }}
                 className={`items-start ${
                   index % 5 === 0
-                    ? "col-span-4 col-start-2 row-span-2"
+                    ? "col-span-4 col-start-2 row-span-2 flex items-center justify-center"
                     : index % 3
                       ? "col-span-3"
                       : "col-span-3 col-start-4 row-span-2"
