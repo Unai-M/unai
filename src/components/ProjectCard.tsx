@@ -11,7 +11,7 @@ export default function ProjectCard({ project }: { project: Project }) {
 
   return (
     <motion.div className="w-fit flex-col gap-4 rounded pt-4">
-      <NavLink to={`/${project.slug?.current}`}>
+      <NavLink to={`/direccion/${project.slug?.current}`}>
         {project?.previewImage?.url && (
           <img
             src={urlFor(project.previewImage?.url)
