@@ -27,16 +27,6 @@ export default function BackgroundDecorations() {
         UNAI
       </motion.div>
 
-      {/* TODO: limpiar */}
-      {/* grilla de puntos */}
-      {/* <motion.div */}
-      {/*   initial={{ opacity: 0 }} */}
-      {/*   animate={{ opacity: 1 }} */}
-      {/*   transition={{ duration: 0.3, delay: 1.4 }} */}
-      {/*   exit={{ opacity: 0 }} */}
-      {/*   className="fixed top-[5vh] left-[20vw] h-[85vh] w-[60vw] bg-[radial-gradient(circle_at_1px_1px,oklch(0.9367_0.1179_261.9)_1px,transparent_0)] [background-size:80px_80px]" */}
-      {/* /> */}
-
       <Lines key="lines" />
     </div>
   );
