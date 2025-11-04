@@ -4,6 +4,7 @@ import { defineQuery } from "groq";
 const profileQuery = defineQuery(`*[_type == "profile"][0] {
   name,
   manifesto,
+  image,
   about
 }`);
 
