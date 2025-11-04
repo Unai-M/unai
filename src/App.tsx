@@ -52,7 +52,9 @@ function App() {
 
   return (
     <>
-      <AnimatePresence>{!isEndInView && <VimeoBackground />}</AnimatePresence>
+      <AnimatePresence>
+        {!isEndInView && <VimeoBackground isVisible={true} />}
+      </AnimatePresence>
 
       <AnimatePresence>
         {!isStartInView && <BackgroundDecorations key="bgDec" />}

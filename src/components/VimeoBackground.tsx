@@ -1,14 +1,17 @@
 import { useState, useRef, useEffect } from "react";
 import { motion } from "motion/react";
 
+// TODO: clean and refactor this component
+
 interface VimeoBackgroundProps {
-  backgroundImageUrl: string | null;
+  // backgroundImageUrl: string | null;
   vimeoId?: string;
   vimeoHash?: string;
+  isVisible: boolean;
 }
 
 export default function VimeoBackground({
-  backgroundImageUrl,
+  // backgroundImageUrl,
   vimeoId = "920256294",
   vimeoHash = "514a358307",
   isVisible = true,
@@ -50,11 +53,11 @@ export default function VimeoBackground({
       <div
         className={`pointer-events-none fixed inset-0 -z-10 h-screen w-full overflow-hidden`}
       >
-        <img
-          src={backgroundImageUrl + "?fm=webp"}
-          alt=""
-          className="absolute inset-0 h-full w-full scale-100 object-cover"
-        />
+        {/* <img */}
+        {/*   src={backgroundImageUrl + "?fm=webp"} */}
+        {/*   alt="" */}
+        {/*   className="absolute inset-0 h-full w-full scale-100 object-cover" */}
+        {/* /> */}
         <div
           style={{
             padding: "0",
