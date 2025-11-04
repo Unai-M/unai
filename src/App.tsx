@@ -102,7 +102,7 @@ function App() {
       </section>
 
       {!isStartInView && (
-        <div className="fixed top-1/2 right-12">
+        <div className="fixed top-1/2 right-12 z-120">
           <LanguageToggle />
         </div>
       )}
