@@ -1,54 +1,88 @@
-import { NavLink } from "react-router";
+import { useLocation, useNavigate } from "react-router";
 import { motion } from "motion/react";
-import {
-  NavigationMenu,
-  NavigationMenuItem,
-  NavigationMenuLink,
-  NavigationMenuList,
-} from "@/components/ui/navigation-menu";
 import useLanguage from "@/hooks/useLanguage";
+import { useCallback, useMemo } from "react";
 
-const navMenuItems = [
-  {
-    id: "direccion-nav",
-    name: { en: "Direction", es: "Dirección" },
-    path: "/",
-  },
-  {
-    id: "manifiesto-nav",
-    name: { en: "Manifesto", es: "Manifiesto" },
-    path: "/manifiesto",
-  },
-  {
-    id: "tratamientos-nav",
-    name: { en: "Treatments", es: "Tratamientos" },
-    path: "/tratamientos",
-  },
-  { id: "info-nav", name: { en: "Info", es: "Info" }, path: "/info" },
-];
-export default function NavMenu() {
+interface NavMenuProps {
+  theme: "light" | "dark";
+}
+
+export default function NavMenu({ theme }: NavMenuProps) {
   const { language } = useLanguage();
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const isLight = theme === "light";
+
+  const scrollToSection = useCallback(
+    (sectionId: string) => {
+      if (location.pathname !== "/") {
+        navigate("/", { state: { scrollTo: sectionId, smooth: false } });
+      } else {
+        document
+          .getElementById(sectionId)
+          ?.scrollIntoView({ behavior: "smooth" });
+      }
+    },
+    [location.pathname, navigate],
+  );
+
+  const buttons = useMemo(
+    () => [
+      {
+        key: "direction",
+        label: language === "es" ? "dirección" : "direction",
+        onClick: () => scrollToSection("direction"),
+        className: "rounded-l-2xl pr-1 pl-3",
+      },
+      {
+        key: "manifesto",
+        label: language === "es" ? "manifiesto" : "manifesto",
+        onClick: () => scrollToSection("manifiesto"),
+        className: "px-1",
+      },
+      {
+        key: "treatments",
+        label: language === "es" ? "tratamientos" : "treatments",
+        onClick: () => navigate("/tratamientos"),
+        className: "px-1",
+      },
+      {
+        key: "info",
+        label: "info",
+        onClick: () => navigate("/info"),
+        className: "rounded-r-2xl pr-3 pl-1",
+      },
+    ],
+    [language, navigate, scrollToSection],
+  );
+
+  const baseBtnClass = `${
+    isLight ? "bg-foreground" : "bg-black/70"
+  } cursor-pointer rounded uppercase transition duration-1000`;
 
   return (
     <motion.header
       initial={{ opacity: 0, y: 40 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 1.25 }}
       exit={{ opacity: 0, y: 40 }}
-      className="bg-green-500/00 _backdrop-blur-xl fixed bottom-12 left-20 z-20 flex w-full items-start justify-between"
+      transition={{ duration: 1 }}
+      className="fixed bottom-12 left-0 z-20 flex w-full items-start justify-center"
     >
-      <div className="flex items-center gap-2 opacity-80">
-        <NavigationMenu>
-          <NavigationMenuList className="flex">
-            {navMenuItems.map((item) => (
-              <NavigationMenuItem key={item.id}>
-                <NavigationMenuLink asChild className="">
-                  <NavLink to={item.path}>{item.name[language]}</NavLink>
-                </NavigationMenuLink>
-              </NavigationMenuItem>
-            ))}
-          </NavigationMenuList>
-        </NavigationMenu>
+      <div
+        className={`${
+          isLight ? "text-[rgba(23,_112,_193,_0.99)]" : "text-foreground"
+        } flex items-center gap-1 rounded-2xl px-4 font-mono uppercase transition duration-1000`}
+      >
+        {buttons.map(({ key, label, onClick, className }) => (
+          <button
+            key={key}
+            onClick={onClick}
+            className={`${baseBtnClass} ${className}`}
+          >
+            {label}
+          </button>
+        ))}
       </div>
     </motion.header>
   );
