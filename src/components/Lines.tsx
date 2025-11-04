@@ -18,7 +18,10 @@ export default function Lines() {
   }, []);
 
   return (
-    <div ref={ref} className="fixed inset-0 h-screen w-full">
+    <div
+      ref={ref}
+      className="pointer-events-none fixed inset-0 h-screen w-full"
+    >
       <svg
         className="absolute inset-0 h-full w-full opacity-30"
         xmlns="http://www.w3.org/2000/svg"
