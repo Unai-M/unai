@@ -1,6 +1,6 @@
 import { useTreatmentProjects } from "@/hooks/useTreatmentProjects";
 import Loading from "@/components/Loading";
-// import useLanguage from "@/hooks/useLanguage";
+import useLanguage from "@/hooks/useLanguage";
 import { urlFor } from "../lib/sanityImageUrl";
 import { motion } from "motion/react";
 import {
@@ -16,7 +16,7 @@ import ErrorPage from "./ErrorPage";
 
 export default function Treatment() {
   const { data, isLoading, error } = useTreatmentProjects();
-  // const { language } = useLanguage();
+  const { language } = useLanguage();
 
   if (error) return <ErrorPage error={error} />;
 
@@ -86,7 +86,10 @@ export default function Treatment() {
                       <div className="flex w-full justify-center overflow-auto">
                         {project.description?.es && (
                           <PortableText
-                            value={project.description.es}
+                            value={
+                              project.description[language] ??
+                              project.description.es
+                            }
                             components={BlockContentComponent}
                           />
                         )}
