@@ -4,18 +4,16 @@ import { urlFor } from "@/lib/sanityImageUrl";
 
 interface ProjectInfoProps {
   data: ProjectQueryResult | undefined;
-  handleClose: () => void;
 }
-export default function ProjectInfo({ data, handleClose }: ProjectInfoProps) {
+export default function ProjectInfo({ data }: ProjectInfoProps) {
   return (
-    <div className="fixed inset-0 z-100 flex h-screen w-full flex-col items-center justify-center bg-black/90">
-      {data?.title && <h1>{data.title.es}</h1>}
+    <div className="mt-8 flex w-full flex-col items-center justify-center">
       {data?.description?.es && <PortableText value={data.description.es} />}
       {data?.credits &&
         data.credits.map((credit) => (
           <div key={credit._key}>{credit.name}</div>
         ))}
-      <div className="flex overflow-auto">
+      <div className="mt-8 flex overflow-auto">
         {data?.images &&
           data.images.map((image) => (
             <img
@@ -24,7 +22,6 @@ export default function ProjectInfo({ data, handleClose }: ProjectInfoProps) {
             />
           ))}
       </div>
-      <button onClick={handleClose}>cerrar</button>
     </div>
   );
 }

@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { useParams } from "react-router";
 import { NavLink } from "react-router";
 import { motion } from "motion/react";
@@ -8,11 +7,11 @@ import ErrorPage from "./ErrorPage";
 import VimeoPlayer from "@/components/VimeoPlayer";
 import ProjectInfo from "@/components/ProjectInfo";
 import { X } from "lucide-react";
+import Lines from "@/components/Lines";
 
 export default function Project() {
   const { slug } = useParams<{ slug: string }>();
   const { data, isLoading, error } = useProject(slug!);
-  const [infoOpen, setInfoOpen] = useState(false);
 
   return (
     <motion.section
@@ -20,7 +19,7 @@ export default function Project() {
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5, ease: "easeInOut" }}
       exit={{ opacity: 0 }}
-      className="no-doc-scroll fixed inset-0 z-[100] flex h-screen w-full flex-col items-center justify-center overflow-hidden bg-black"
+      className="no-doc-scroll fixed inset-0 z-[100] flex w-full flex-col items-center overflow-y-scroll bg-black"
     >
       {isLoading && <Loading />}
 
@@ -33,13 +32,15 @@ export default function Project() {
         </>
       ) : (
         <>
-          <div className="mb-4 flex w-full justify-between gap-2 px-4">
+          <div className="-z-10">
+            <Lines />
+          </div>
+          <div className="mb-4 flex w-full justify-between gap-2 px-4 pt-4">
             <div className="flex items-center gap-3">
-              {data?.title && <h1>{data.title.es}</h1>}
-              <button onClick={() => setInfoOpen(!infoOpen)}>info</button>
+              {data?.title && <h1 className="text-4xl">{data.title.es}</h1>}
             </div>
             <NavLink to="/">
-              <X />
+              <X size={48} />
             </NavLink>
           </div>
 
@@ -49,9 +50,7 @@ export default function Project() {
             </div>
           )}
 
-          {infoOpen && (
-            <ProjectInfo data={data} handleClose={() => setInfoOpen(false)} />
-          )}
+          <ProjectInfo data={data} />
         </>
       )}
     </motion.section>
