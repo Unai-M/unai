@@ -1,18 +1,16 @@
 import useLanguage from "@/hooks/useLanguage";
-import { Button } from "@/components/ui/button";
 
 export default function LanguageToggle() {
   const { language, setLanguage } = useLanguage();
 
   return (
-    <Button
-      variant="outline"
-      className="bg-white/00 border-foreground/20 cursor-pointer"
+    <button
+      className="border-foreground cursor-pointer rounded-2xl border px-2"
       onClick={() => {
         setLanguage(language === "es" ? "en" : "es");
       }}
     >
       {language === "es" ? "en" : "es"}
-    </Button>
+    </button>
   );
 }
