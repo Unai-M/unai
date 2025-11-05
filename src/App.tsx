@@ -12,14 +12,20 @@ import Archive from "./pages/Archive";
 import VimeoBackground from "./components/VimeoBackground";
 import BackgroundDecorations from "./components/BackgroundDecorations";
 import LanguageToggle from "@/components/LanguageToggle";
+import ManifestoFilm from "./pages/ManifestoFilm";
+import ManifestoFilmBackground from "./components/ManifestoFilmBackground";
 
 function App() {
   const startRef = useRef(null);
   const endRef = useRef(null);
+  const manifestoFilm = useRef(null);
   const isStartInView = useInView(startRef, {
     margin: "-320px 0px 0px 320px",
   });
   const isEndInView = useInView(endRef);
+  const isManifestoFilmInView = useInView(manifestoFilm, {
+    amount: 0.8,
+  });
   const location = useLocation();
 
   useEffect(() => {
@@ -59,8 +65,11 @@ function App() {
       </AnimatePresence>
 
       <AnimatePresence>
-        {!isStartInView && <BackgroundDecorations key="bgDec" />}
-        {!isStartInView && (
+        {isManifestoFilmInView && <ManifestoFilmBackground key="maniFilmBg" />}
+        {!isStartInView && !isManifestoFilmInView && (
+          <BackgroundDecorations key="bgDec" />
+        )}
+        {!isStartInView && !isManifestoFilmInView && (
           <NavMenu
             theme={
               isEndInView &&
@@ -73,8 +82,9 @@ function App() {
         )}
       </AnimatePresence>
 
-      <Crosshair color="#ffffff22" text={getCrosshairText()} />
-
+      {!isManifestoFilmInView && (
+        <Crosshair color="#ffffff22" text={getCrosshairText()} />
+      )}
       <div
         className="_mb-10 pointer-events-none h-screen w-full"
         ref={startRef}
@@ -98,13 +108,16 @@ function App() {
 
       <section
         id="manifiesto"
-        className="flex min-h-[100vh] items-center"
+        className="flex min-h-[100vh] flex-col items-center pb-24"
         ref={endRef}
       >
         <Manifesto />
+        <div className="_mt-12 flex flex-col items-center" ref={manifestoFilm}>
+          {isEndInView && <ManifestoFilm />}
+        </div>
       </section>
 
-      {!isStartInView && (
+      {!isStartInView && !isManifestoFilmInView && (
         <div className="fixed top-1/2 right-12 z-120">
           <LanguageToggle />
         </div>
