@@ -48,9 +48,9 @@ export default function NavMenu({ theme }: NavMenuProps) {
         className: "px-1",
       },
       {
-        key: "info",
-        label: "info",
-        onClick: () => navigate("/info"),
+        key: "archive",
+        label: language === "es" ? "archivo" : "archive",
+        onClick: () => navigate("/archivo"),
         className: "rounded-r-2xl pr-3 pl-1",
       },
     ],

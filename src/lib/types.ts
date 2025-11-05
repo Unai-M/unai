@@ -20,56 +20,6 @@ export type Profile = {
   _updatedAt: string;
   _rev: string;
   name?: string;
-  about?: {
-    es?: Array<{
-      children?: Array<{
-        marks?: Array<string>;
-        text?: string;
-        _type: "span";
-        _key: string;
-      }>;
-      style?: "normal";
-      listItem?: never;
-      markDefs?: Array<{
-        href?: string;
-        _type: "link";
-        _key: string;
-      }>;
-      level?: number;
-      _type: "block";
-      _key: string;
-    }>;
-    en?: Array<{
-      children?: Array<{
-        marks?: Array<string>;
-        text?: string;
-        _type: "span";
-        _key: string;
-      }>;
-      style?: "normal";
-      listItem?: never;
-      markDefs?: Array<{
-        href?: string;
-        _type: "link";
-        _key: string;
-      }>;
-      level?: number;
-      _type: "block";
-      _key: string;
-    }>;
-  };
-  image?: {
-    asset?: {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
-    };
-    media?: unknown;
-    hotspot?: SanityImageHotspot;
-    crop?: SanityImageCrop;
-    _type: "image";
-  };
   manifesto?: {
     es?: Array<{
       children?: Array<{
@@ -109,6 +59,10 @@ export type Profile = {
     }>;
   };
   manifestoVimeoId?: string;
+  note?: {
+    es?: string;
+    en?: string;
+  };
   reelVimeoId?: string;
   email?: string;
   links?: Array<{
@@ -194,6 +148,7 @@ export type DirectionProject = {
     en?: string;
   };
   slug?: Slug;
+  isHighlighted?: boolean;
   date?: string;
   vimeoId?: string;
   previewImage?: {
@@ -427,7 +382,7 @@ export type AllSanitySchemaTypes = Profile | TreatmentProject | DirectionProject
 export declare const internalGroqTypeReferenceTo: unique symbol;
 // Source: ../unai/src/lib/directionProjectsListQuery.ts
 // Variable: directionProjectsListQuery
-// Query: *[_type == "directionProject"] | order(date desc){  _id,  title,  slug,  date,  projectType -> {en, es},  previewImage { "url": asset->url },}
+// Query: *[_type == "directionProject"] | order(date desc){  _id,  title,  slug,  date,  isHighlighted,  projectType -> {en, es},  previewImage { "url": asset->url },}
 export type DirectionProjectsListQueryResult = Array<{
   _id: string;
   title: {
@@ -436,6 +391,7 @@ export type DirectionProjectsListQueryResult = Array<{
   } | null;
   slug: Slug | null;
   date: string | null;
+  isHighlighted: boolean | null;
   projectType: {
     en: string | null;
     es: string | null;
@@ -447,7 +403,7 @@ export type DirectionProjectsListQueryResult = Array<{
 
 // Source: ../unai/src/lib/profileQuery.ts
 // Variable: profileQuery
-// Query: *[_type == "profile"][0] {  name,  manifesto,  about}
+// Query: *[_type == "profile"][0] {  name,  manifesto,  manifestoVimeoId,  note,  reelVimeoId,  email,  links}
 export type ProfileQueryResult = {
   name: string | null;
   manifesto: {
@@ -488,44 +444,19 @@ export type ProfileQueryResult = {
       _key: string;
     }>;
   } | null;
-  about: {
-    es?: Array<{
-      children?: Array<{
-        marks?: Array<string>;
-        text?: string;
-        _type: "span";
-        _key: string;
-      }>;
-      style?: "normal";
-      listItem?: never;
-      markDefs?: Array<{
-        href?: string;
-        _type: "link";
-        _key: string;
-      }>;
-      level?: number;
-      _type: "block";
-      _key: string;
-    }>;
-    en?: Array<{
-      children?: Array<{
-        marks?: Array<string>;
-        text?: string;
-        _type: "span";
-        _key: string;
-      }>;
-      style?: "normal";
-      listItem?: never;
-      markDefs?: Array<{
-        href?: string;
-        _type: "link";
-        _key: string;
-      }>;
-      level?: number;
-      _type: "block";
-      _key: string;
-    }>;
+  manifestoVimeoId: string | null;
+  note: {
+    es?: string;
+    en?: string;
   } | null;
+  reelVimeoId: string | null;
+  email: string | null;
+  links: Array<{
+    title?: string;
+    url?: string;
+    _type: "link";
+    _key: string;
+  }> | null;
 } | null;
 
 // Source: ../unai/src/lib/projectQuery.ts
@@ -661,8 +592,8 @@ export type TreatmentProjectsQueryResult = Array<{
 import "@sanity/client";
 declare module "@sanity/client" {
   interface SanityQueries {
-    "*[_type == \"directionProject\"] | order(date desc){\n  _id,\n  title,\n  slug,\n  date,\n  projectType -> {en, es},\n  previewImage { \"url\": asset->url },\n}": DirectionProjectsListQueryResult;
-    "*[_type == \"profile\"][0] {\n  name,\n  manifesto,\n  about\n}": ProfileQueryResult;
+    "*[_type == \"directionProject\"] | order(date desc){\n  _id,\n  title,\n  slug,\n  date,\n  isHighlighted,\n  projectType -> {en, es},\n  previewImage { \"url\": asset->url },\n}": DirectionProjectsListQueryResult;
+    "*[_type == \"profile\"][0] {\n  name,\n  manifesto,\n  manifestoVimeoId,\n  note,\n  reelVimeoId,\n  email,\n  links\n}": ProfileQueryResult;
     "*[_type == \"directionProject\" && slug.current == $slug][0]{\n  _id,\n  title,\n  slug,\n  date,\n  description,\n  vimeoId,\n  projectType -> {en, es},\n  credits,\n  images[]{\n    _key, \n    asset,\n    \"dimensions\": asset->metadata.dimensions,\n  },\n}": ProjectQueryResult;
     "*[_type == \"treatmentProject\"] {\n  _id,\n  title,\n  slug,\n  date,\n  description,\n  image { \"url\": asset->url },\n}": TreatmentProjectsQueryResult;
   }

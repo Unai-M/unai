@@ -8,7 +8,7 @@ import Noise from "./components/Noise";
 import { useRef, useEffect } from "react";
 import { useInView, AnimatePresence } from "motion/react";
 import Crosshair from "./components/Crosshair";
-import Info from "./pages/Info";
+import Archive from "./pages/Archive";
 import VimeoBackground from "./components/VimeoBackground";
 import BackgroundDecorations from "./components/BackgroundDecorations";
 import LanguageToggle from "@/components/LanguageToggle";
@@ -45,6 +45,8 @@ function App() {
         return "INFO";
       case "/tratamientos":
         return "TRATAMIENTOS";
+      case "/archivo":
+        return "ARCHIVO";
       default:
         return "";
     }
@@ -61,7 +63,9 @@ function App() {
         {!isStartInView && (
           <NavMenu
             theme={
-              isEndInView && location.pathname !== "/tratamientos"
+              isEndInView &&
+              location.pathname !== "/tratamientos" &&
+              location.pathname !== "/archivo"
                 ? "light"
                 : "dark"
             }
@@ -82,12 +86,12 @@ function App() {
       >
         <Direction />
 
-        <AnimatePresence mode="wait">
+        <AnimatePresence>
           <Routes location={location} key={location.pathname}>
             <Route path="/" element={<div />} />
             <Route path="/direccion/:slug" element={<Project />} />
             <Route path="/tratamientos" element={<Treatments />} />
-            <Route path="/info" element={<Info />} />
+            <Route path="/archivo" element={<Archive />} />
           </Routes>
         </AnimatePresence>
       </section>
@@ -97,7 +101,6 @@ function App() {
         className="flex min-h-[100vh] items-center"
         ref={endRef}
       >
-        {/* <div className="h-screen w-full rounded-[30vw] bg-blue-600" /> */}
         <Manifesto />
       </section>
 

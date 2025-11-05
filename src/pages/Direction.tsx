@@ -10,11 +10,13 @@ export default function Direction() {
   if (isLoading) return <Loading />;
   if (error) return <ErrorPage error={error} />;
 
+  const highlightedProjects = data?.filter((project) => project.isHighlighted);
+
   return (
     <motion.section className="_h-screen relative flex w-full flex-col items-center justify-center">
-      <div className="align-items-center grid w-3/4 grid-cols-6 gap-12 px-8">
-        {data?.length &&
-          data.map((project, index) => {
+      <div className="align-items-center grid w-3/4 auto-rows-[minmax(100px,auto)] grid-cols-6 gap-12 px-8">
+        {highlightedProjects?.length &&
+          highlightedProjects.map((project, index) => {
             return (
               <motion.div
                 initial={{ opacity: 0, scale: 0.8 }}
