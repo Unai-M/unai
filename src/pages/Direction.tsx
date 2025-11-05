@@ -13,7 +13,7 @@ export default function Direction() {
   const highlightedProjects = data?.filter((project) => project.isHighlighted);
 
   return (
-    <motion.section className="_h-screen relative flex w-full flex-col items-center justify-center">
+    <motion.section className="relative flex w-full flex-col items-center justify-center">
       <div className="align-items-center grid w-3/4 auto-rows-[minmax(100px,auto)] grid-cols-6 gap-12 px-8">
         {highlightedProjects?.length &&
           highlightedProjects.map((project, index) => {
