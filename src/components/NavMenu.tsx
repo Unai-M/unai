@@ -67,7 +67,7 @@ export default function NavMenu({ theme }: NavMenuProps) {
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: 40 }}
       transition={{ duration: 1 }}
-      className="fixed bottom-12 left-0 z-20 flex w-full items-start justify-center"
+      className="fixed bottom-12 left-0 z-30 flex w-full items-start justify-center"
     >
       <div
         className={`${

@@ -20,7 +20,7 @@ export default function Archive() {
         transition: { delay: 0.15, duration: 0.5 },
       }}
       transition={{ duration: 0.5, ease: "easeOut" }}
-      className="no-doc-scroll fixed inset-0 flex origin-left justify-center bg-black py-24"
+      className="no-doc-scroll fixed inset-0 z-20 flex origin-left justify-center bg-black py-24"
     >
       {isLoading && <Loading />}
 
