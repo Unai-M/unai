@@ -119,7 +119,7 @@ function App() {
       </section>
 
       {!isStartInView && !isManifestoFilmInView && (
-        <div className="fixed top-1/2 right-12 z-120 flex flex-col items-center justify-center gap-2">
+        <div className="fixed top-0 right-12 z-120 flex h-screen flex-col items-center justify-center gap-2">
           <ContactButton />
           <LanguageToggle />
         </div>
