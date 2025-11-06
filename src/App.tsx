@@ -14,6 +14,7 @@ import BackgroundDecorations from "./components/BackgroundDecorations";
 import LanguageToggle from "@/components/LanguageToggle";
 import ManifestoFilm from "./pages/ManifestoFilm";
 import ManifestoFilmBackground from "./components/ManifestoFilmBackground";
+import ContactButton from "./components/ContactButton";
 
 function App() {
   const startRef = useRef(null);
@@ -118,7 +119,8 @@ function App() {
       </section>
 
       {!isStartInView && !isManifestoFilmInView && (
-        <div className="fixed top-1/2 right-12 z-120">
+        <div className="fixed top-1/2 right-12 z-120 flex flex-col items-center justify-center gap-2">
+          <ContactButton />
           <LanguageToggle />
         </div>
       )}
