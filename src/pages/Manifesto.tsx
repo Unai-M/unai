@@ -4,6 +4,8 @@ import Loading from "@/components/Loading";
 import useLanguage from "@/hooks/useLanguage";
 import { BlockContentComponent } from "../components/BlockContentComponent";
 import ErrorPage from "./ErrorPage";
+import { ArrowBigDownDash } from "lucide-react";
+import { motion } from "motion/react";
 
 export default function Manifesto() {
   const { data: profile, isLoading: isProfileLoading, error } = useProfile();
@@ -18,11 +20,29 @@ export default function Manifesto() {
       : profile?.manifesto?.es || profile?.manifesto?.en;
 
   return (
-    <div className="mx-auto flex w-[80vw] max-w-prose flex-col gap-2 py-24">
+    <motion.div
+      className="mx-auto flex w-[80vw] max-w-prose flex-col gap-2 py-24"
+      initial={{ opacity: 0, scale: 0.8 }}
+      whileInView={{ opacity: 1, scale: 1 }}
+      viewport={{ amount: 0.3 }}
+      transition={{ duration: 0.6 }}
+    >
       <PortableText
         value={Array.isArray(manifesto) ? manifesto : []}
         components={BlockContentComponent}
       />
-    </div>
+      <motion.div
+        className="mt-6 flex w-full justify-center"
+        animate={{ y: 10 }}
+        transition={{
+          duration: 1,
+          ease: "easeInOut",
+          repeat: Infinity,
+          repeatType: "reverse", // 👈 go back and forth
+        }}
+      >
+        <ArrowBigDownDash />
+      </motion.div>
+    </motion.div>
   );
 }
