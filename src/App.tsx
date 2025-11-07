@@ -5,7 +5,7 @@ import Project from "./pages/Project";
 import Treatments from "./pages/Treatments";
 import Manifesto from "./pages/Manifesto";
 import Noise from "./components/Noise";
-import { useRef, useEffect } from "react";
+import { useRef, useEffect, useState } from "react";
 import { useInView, AnimatePresence } from "motion/react";
 import Crosshair from "./components/Crosshair";
 import Archive from "./pages/Archive";
@@ -20,6 +20,8 @@ function App() {
   const startRef = useRef(null);
   const endRef = useRef(null);
   const manifestoFilm = useRef(null);
+  const [mounted, setMounted] = useState(false);
+
   const isStartInView = useInView(startRef, {
     margin: "-320px 0px 0px 320px",
   });
@@ -30,6 +32,10 @@ function App() {
   const location = useLocation();
 
   useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  useEffect(() => {
     if (location.state?.scrollTo) {
       const section = document.getElementById(location.state.scrollTo);
       if (section) {
@@ -37,7 +43,6 @@ function App() {
           behavior: location.state?.smooth ? "smooth" : "auto",
         });
       }
-      // clear state so it doesn’t scroll again on refresh
       window.history.replaceState({}, document.title);
     }
   }, [location]);
@@ -59,6 +64,13 @@ function App() {
     }
   };
 
+  const shouldShowUI =
+    location.pathname === "/"
+      ? mounted && !isStartInView && !isManifestoFilmInView
+      : true;
+
+  const shouldShowCrosshair = mounted && !isManifestoFilmInView;
+
   return (
     <>
       <AnimatePresence>
@@ -67,10 +79,8 @@ function App() {
 
       <AnimatePresence>
         {isManifestoFilmInView && <ManifestoFilmBackground key="maniFilmBg" />}
-        {!isStartInView && !isManifestoFilmInView && (
-          <BackgroundDecorations key="bgDec" />
-        )}
-        {!isStartInView && !isManifestoFilmInView && (
+        {shouldShowUI && <BackgroundDecorations key="bgDec" />}
+        {shouldShowUI && (
           <NavMenu
             theme={
               isEndInView &&
@@ -83,9 +93,10 @@ function App() {
         )}
       </AnimatePresence>
 
-      {!isManifestoFilmInView && (
+      {shouldShowCrosshair && (
         <Crosshair color="#ffffff22" text={getCrosshairText()} />
       )}
+
       <div
         className="_mb-10 pointer-events-none h-screen w-full"
         ref={startRef}
@@ -118,14 +129,17 @@ function App() {
         </div>
       </section>
 
-      {!isStartInView && !isManifestoFilmInView && (
-        <div className="pointer-events-none fixed top-0 right-12 z-120 flex h-screen flex-col justify-center">
-          <div className="pointer-events-auto flex flex-col items-center gap-2">
-            <ContactButton />
-            <LanguageToggle />
+      <AnimatePresence>
+        {shouldShowUI && (
+          <div className="pointer-events-none fixed top-0 right-12 z-120 flex h-screen flex-col justify-center">
+            <div className="pointer-events-auto flex flex-col items-center gap-2">
+              <ContactButton />
+              <LanguageToggle />
+            </div>
           </div>
-        </div>
-      )}
+        )}
+      </AnimatePresence>
+
       <div className="pointer-events-none fixed inset-0">
         <Noise
           patternSize={250}

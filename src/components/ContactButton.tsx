@@ -10,7 +10,10 @@ export default function ContactButton() {
 
   return (
     <>
-      <div
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
         ref={buttonRef}
         onClick={(e) => {
           e.stopPropagation();
@@ -19,7 +22,7 @@ export default function ContactButton() {
         className="z-20 cursor-pointer"
       >
         <Contact strokeWidth={1.25} size={24} />
-      </div>
+      </motion.div>
 
       <AnimatePresence>
         {isOpen && <ContactWindow onClose={() => setIsOpen(false)} />}
