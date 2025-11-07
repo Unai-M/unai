@@ -38,10 +38,7 @@ export default function Archive() {
         {data?.length &&
           data.map((project) => {
             return (
-              <div
-                key={project._id}
-                className="mt-1 flex items-center gap-8 rounded rounded-b-2xl bg-black/70 px-4 py-1"
-              >
+              <div key={project._id} className="mb-2 flex items-center gap-8">
                 <span className="font-mono">
                   {project.date ?? project.date}
                 </span>

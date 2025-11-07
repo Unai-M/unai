@@ -57,19 +57,6 @@ export default function Treatment() {
           <CarouselContent>
             {data?.length &&
               data.map((project) => {
-                {
-                  /* const title = */
-                }
-                {
-                  /*   language === "en" */
-                }
-                {
-                  /*     ? project.title?.en || project.title?.es */
-                }
-                {
-                  /*     : project.title?.es || project.title?.en; */
-                }
-
                 return (
                   <CarouselItem key={project._id} className="">
                     <div className="flex h-screen max-w-full flex-col items-center justify-center gap-4">

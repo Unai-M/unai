@@ -38,7 +38,7 @@ export default function Manifesto() {
           duration: 1,
           ease: "easeInOut",
           repeat: Infinity,
-          repeatType: "reverse", // 👈 go back and forth
+          repeatType: "reverse",
         }}
       >
         <ArrowBigDownDash />
