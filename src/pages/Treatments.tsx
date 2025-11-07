@@ -99,8 +99,8 @@ export default function Treatment() {
                 );
               })}
           </CarouselContent>
-          <CarouselPrevious />
-          <CarouselNext />
+          <CarouselPrevious className="fixed top-1/2 left-1/8" />
+          <CarouselNext className="fixed top-1/2 right-1/8" />
         </Carousel>
       </motion.div>
     </motion.section>
