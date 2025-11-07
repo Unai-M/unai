@@ -50,7 +50,7 @@ export default function Project() {
 
           {data?.vimeoId && (
             <div className="w-[80vw]">
-              <VimeoPlayer url={data.vimeoId} />
+              <VimeoPlayer autoplay={1} url={data.vimeoId} />
             </div>
           )}
 
