@@ -3,8 +3,17 @@
 
 @font-face {
   font-family: "Display";
-  font-weight: 200 700;
-  src: url("/fonts/GeneralSans-Variable.woff");
+  src: url("/fonts/GeneralSans-Bold.woff2");
+}
+
+@font-face {
+  font-family: "GeneralSans-Light";
+  src: url("/fonts/GeneralSans-Light.woff2");
+}
+
+@font-face {
+  font-family: "Mono";
+  src: url("/fonts/AzeretMono-ExtraLight.woff2");
 }
 
 @custom-variant dark (&:is(.dark *));
@@ -55,8 +64,9 @@
   /* --font-display: "Grechen Fuemen", cursive; */
   /* --font-display: "Grape Nuts", cursive; */
   /* --font-display: "Homemade Apple", cursive; */
-  --default-font-family: sans-serif;
+  --default-font-family: "GeneralSans-Light", sans-serif;
   --font-display: "Display", sans-serif;
+  --font-mono: "Mono", monospace;
 
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);

@@ -51,7 +51,7 @@ export default function Archive() {
                   </h3>
                 )}
                 {project.projectType && (
-                  <span className="font-mono">
+                  <span className="font-mono text-sm">
                     {project.projectType[language] ?? project.projectType.es}
                   </span>
                 )}

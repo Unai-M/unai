@@ -35,13 +35,17 @@ export default function Project() {
           <div className="-z-10">
             <Lines />
           </div>
-          <div className="mb-4 flex w-full justify-between gap-2 px-4 pt-4">
+          <div className="mb-8 flex w-full items-center justify-between gap-2 px-12 pt-8">
             <div className="flex items-center gap-3">
-              {data?.title && <h1 className="text-4xl">{data.title.es}</h1>}
+              {data?.title && (
+                <h1 className="font-display text-4xl">{data.title.es}</h1>
+              )}
             </div>
-            <NavLink to="/">
-              <X size={48} />
-            </NavLink>
+            <div className="">
+              <NavLink to="/">
+                <X size={36} />
+              </NavLink>
+            </div>
           </div>
 
           {data?.vimeoId && (

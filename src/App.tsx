@@ -119,9 +119,11 @@ function App() {
       </section>
 
       {!isStartInView && !isManifestoFilmInView && (
-        <div className="fixed top-0 right-12 z-120 flex h-screen flex-col items-center justify-center gap-2">
-          <ContactButton />
-          <LanguageToggle />
+        <div className="pointer-events-none fixed top-0 right-12 z-120 flex h-screen flex-col justify-center">
+          <div className="pointer-events-auto flex flex-col items-center gap-2">
+            <ContactButton />
+            <LanguageToggle />
+          </div>
         </div>
       )}
       <div className="pointer-events-none fixed inset-0">

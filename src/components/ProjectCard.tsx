@@ -24,12 +24,12 @@ export default function ProjectCard({ project }: { project: Project }) {
       </NavLink>
       <div className="mt-1 flex items-center gap-8 rounded rounded-b-2xl bg-black/70 px-4 py-1">
         {project.title && (
-          <h3 className="font-thin tracking-wider uppercase">
+          <h3 className="font-thin tracking-wider">
             {project.title[language] ?? project.title.es}
           </h3>
         )}
         {project.projectType && (
-          <span className="font-mono">
+          <span className="font-mono text-sm lowercase">
             {project.projectType[language] ?? project.projectType.es}
           </span>
         )}

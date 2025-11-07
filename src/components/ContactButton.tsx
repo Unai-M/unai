@@ -18,7 +18,7 @@ export default function ContactButton() {
         }}
         className="z-20 cursor-pointer"
       >
-        <Contact strokeWidth={1.5} />
+        <Contact strokeWidth={1.25} size={24} />
       </div>
 
       <AnimatePresence>
@@ -47,7 +47,7 @@ function ContactWindow({ onClose }: { onClose: () => void }) {
         animate={{ scale: 1 }}
         exit={{ scale: 0.95 }}
         transition={{ duration: 0.2 }}
-        className="border-foreground relative z-20 rounded-2xl border px-6 py-4 font-mono text-white backdrop-blur-md"
+        className="border-foreground/30 relative z-20 rounded-2xl border px-6 py-4 font-mono text-white backdrop-blur-md"
         onClick={(e) => e.stopPropagation()}
       >
         <h1 className="mb-2 uppercase">
