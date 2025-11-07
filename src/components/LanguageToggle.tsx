@@ -5,7 +5,7 @@ export default function LanguageToggle() {
 
   return (
     <button
-      className="border-foreground/80 cursor-pointer rounded-2xl border-2 px-2 text-sm"
+      className="border-foreground/80 cursor-pointer rounded-2xl border-2 px-2 py-1 font-mono text-xs"
       onClick={() => {
         setLanguage(language === "es" ? "en" : "es");
       }}
