@@ -23,7 +23,7 @@ export default function Lines() {
       className="pointer-events-none fixed inset-0 h-screen w-full"
     >
       <svg
-        className="absolute inset-0 h-full w-full opacity-30"
+        className="absolute inset-0 h-full w-full opacity-20"
         xmlns="http://www.w3.org/2000/svg"
       >
         <motion.line
