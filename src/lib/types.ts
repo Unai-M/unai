@@ -151,6 +151,7 @@ export type DirectionProject = {
   isHighlighted?: boolean;
   date?: string;
   vimeoId?: string;
+  previewId?: string;
   previewImage?: {
     asset?: {
       _ref: string;
@@ -461,7 +462,7 @@ export type ProfileQueryResult = {
 
 // Source: ../unai/src/lib/projectQuery.ts
 // Variable: projectQuery
-// Query: *[_type == "directionProject" && slug.current == $slug][0]{  _id,  title,  slug,  date,  description,  vimeoId,  projectType -> {en, es},  credits,  images[]{    _key,     asset,    "dimensions": asset->metadata.dimensions,  },}
+// Query: *[_type == "directionProject" && slug.current == $slug][0]{  _id,  title,  slug,  date,  description,  vimeoId,  previewId,  projectType -> {en, es},  credits,  images[]{    _key,     asset,    "dimensions": asset->metadata.dimensions,  },}
 export type ProjectQueryResult = {
   _id: string;
   title: {
@@ -509,6 +510,7 @@ export type ProjectQueryResult = {
     }>;
   } | null;
   vimeoId: string | null;
+  previewId: string | null;
   projectType: {
     en: string | null;
     es: string | null;
@@ -594,7 +596,7 @@ declare module "@sanity/client" {
   interface SanityQueries {
     "*[_type == \"directionProject\"] | order(date desc){\n  _id,\n  title,\n  slug,\n  date,\n  isHighlighted,\n  projectType -> {en, es},\n  previewImage { \"url\": asset->url },\n}": DirectionProjectsListQueryResult;
     "*[_type == \"profile\"][0] {\n  name,\n  manifesto,\n  manifestoVimeoId,\n  note,\n  reelVimeoId,\n  email,\n  links\n}": ProfileQueryResult;
-    "*[_type == \"directionProject\" && slug.current == $slug][0]{\n  _id,\n  title,\n  slug,\n  date,\n  description,\n  vimeoId,\n  projectType -> {en, es},\n  credits,\n  images[]{\n    _key, \n    asset,\n    \"dimensions\": asset->metadata.dimensions,\n  },\n}": ProjectQueryResult;
+    "*[_type == \"directionProject\" && slug.current == $slug][0]{\n  _id,\n  title,\n  slug,\n  date,\n  description,\n  vimeoId,\n  previewId,\n  projectType -> {en, es},\n  credits,\n  images[]{\n    _key, \n    asset,\n    \"dimensions\": asset->metadata.dimensions,\n  },\n}": ProjectQueryResult;
     "*[_type == \"treatmentProject\"] {\n  _id,\n  title,\n  slug,\n  date,\n  description,\n  image { \"url\": asset->url },\n}": TreatmentProjectsQueryResult;
   }
 }

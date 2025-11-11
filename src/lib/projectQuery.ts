@@ -9,6 +9,7 @@ const projectQuery = defineQuery(
   date,
   description,
   vimeoId,
+  previewId,
   projectType -> {en, es},
   credits,
   images[]{
