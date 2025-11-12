@@ -84,7 +84,6 @@ export default function VimeoBackground({
                 top: "50%",
                 left: "50%",
                 transform: "translate(-50%, -50%)",
-                borderRadius: "30vw",
               }}
               initial={{ opacity: 0 }}
               animate={{ opacity: isLoaded ? 1 : 0 }}
