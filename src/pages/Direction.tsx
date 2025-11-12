@@ -14,7 +14,7 @@ export default function Direction() {
 
   return (
     <motion.section className="relative flex w-full flex-col items-center justify-center">
-      <div className="align-items-center grid w-3/4 auto-rows-[minmax(100px,auto)] grid-cols-6 gap-12 px-8">
+      <div className="align-items-center grid w-[90vw] auto-rows-[minmax(100px,auto)] grid-cols-1 gap-12 px-8 lg:grid-cols-6">
         {highlightedProjects?.length &&
           highlightedProjects.map((project, index) => {
             return (
@@ -23,12 +23,12 @@ export default function Direction() {
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ amount: 0.4 }}
                 transition={{ duration: 0.6 }}
-                className={`items-start ${
+                className={`flex justify-center ${
                   index % 5 === 0
-                    ? "col-span-4 col-start-2 row-span-2 flex items-center justify-center"
+                    ? "lg:col-span-4 lg:col-start-2 lg:row-span-2"
                     : index % 3
-                      ? "col-span-3"
-                      : "col-span-3 col-start-4 row-span-2"
+                      ? "lg:col-span-3"
+                      : "lg:col-span-3 lg:col-start-4 lg:row-span-2"
                 }`}
                 key={project._id}
               >

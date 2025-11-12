@@ -7,6 +7,7 @@ const directionProjectsListQuery =
   title,
   slug,
   date,
+  previewId,
   isHighlighted,
   projectType -> {en, es},
   previewImage { "url": asset->url },
