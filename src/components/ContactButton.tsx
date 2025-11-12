@@ -46,24 +46,27 @@ function ContactWindow({ onClose }: { onClose: () => void }) {
       <div className="absolute inset-0 bg-black/20" onClick={onClose} />
 
       <motion.div
-        initial={{ scale: 0.95 }}
-        animate={{ scale: 1 }}
-        exit={{ scale: 0.95 }}
-        transition={{ duration: 0.2 }}
-        className="border-foreground/30 relative z-20 rounded-2xl border px-6 py-4 font-mono text-white backdrop-blur-md"
+        initial={{ scaleY: 0 }}
+        animate={{ scaleY: 1 }}
+        exit={{ scaleY: 0 }}
+        transition={{ duration: 0.15 }}
+        className="border-foreground/30 relative z-20 rounded-2xl border px-6 py-4 font-mono text-white backdrop-blur-2xl"
         onClick={(e) => e.stopPropagation()}
       >
-        <h1 className="mb-2 uppercase">
+        <h1 className="mb-2 text-2xl uppercase">
           {language === "es" ? "contacto" : "contact"}
         </h1>
 
         {data?.email && (
-          <a href={`mailto:${data.email}`} className="mb-2 block">
+          <a
+            href={`mailto:${data.email}`}
+            className="mb-2 block hover:underline"
+          >
             {data.email}
           </a>
         )}
 
-        <div className="flex flex-row items-center gap-2">
+        <div className="flex flex-col items-start gap-2">
           {data?.links?.length &&
             data.links.map((link) => (
               <a
@@ -71,6 +74,7 @@ function ContactWindow({ onClose }: { onClose: () => void }) {
                 href={link.url}
                 target="_blank"
                 rel="noopener noreferrer"
+                className="hover:underline"
               >
                 {link.title}
               </a>
