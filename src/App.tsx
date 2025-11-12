@@ -7,7 +7,6 @@ import Manifesto from "./pages/Manifesto";
 import Noise from "./components/Noise";
 import { useRef, useEffect, useState } from "react";
 import { useInView, AnimatePresence } from "motion/react";
-import Crosshair from "./components/Crosshair";
 import Archive from "./pages/Archive";
 import VimeoBackground from "./components/VimeoBackground";
 import BackgroundDecorations from "./components/BackgroundDecorations";
@@ -47,29 +46,10 @@ function App() {
     }
   }, [location]);
 
-  const getCrosshairText = () => {
-    switch (location.pathname) {
-      case "/":
-        if (isStartInView) return "UNAI MARIA DE AMORRORTU";
-        if (isEndInView) return "MANIFIESTO";
-        return "DIRECCIÓN";
-      case "/info":
-        return "INFO";
-      case "/tratamientos":
-        return "TRATAMIENTOS";
-      case "/archivo":
-        return "ARCHIVO";
-      default:
-        return "";
-    }
-  };
-
   const shouldShowUI =
     location.pathname === "/"
       ? mounted && !isStartInView && !isManifestoFilmInView
       : true;
-
-  const shouldShowCrosshair = mounted && !isManifestoFilmInView;
 
   return (
     <>
@@ -92,10 +72,6 @@ function App() {
           />
         )}
       </AnimatePresence>
-
-      {shouldShowCrosshair && (
-        <Crosshair color="#ffffff22" text={getCrosshairText()} />
-      )}
 
       <div
         className="_mb-10 pointer-events-none h-screen w-full"
