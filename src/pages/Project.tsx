@@ -1,17 +1,18 @@
-import { useParams } from "react-router";
-import { NavLink } from "react-router";
+import { NavLink, useParams, useNavigate } from "react-router";
 import { motion } from "motion/react";
 import { useProject } from "@/hooks/useProject";
 import Loading from "@/components/Loading";
 import ErrorPage from "./ErrorPage";
 import VimeoPlayer from "@/components/VimeoPlayer";
 import ProjectInfo from "@/components/ProjectInfo";
-import { X } from "lucide-react";
 import Lines from "@/components/Lines";
+import useLanguage from "@/hooks/useLanguage";
 
 export default function Project() {
   const { slug } = useParams<{ slug: string }>();
   const { data, isLoading, error } = useProject(slug!);
+  const navigate = useNavigate();
+  const { language } = useLanguage();
 
   return (
     <motion.section
@@ -36,15 +37,21 @@ export default function Project() {
             <Lines />
           </div>
           <div className="mb-8 flex w-full items-center justify-between gap-2 px-12 pt-8">
-            <div className="flex items-center gap-3">
-              {data?.title && (
-                <h1 className="font-display text-4xl">{data.title.es}</h1>
+            <div className="flex items-center gap-3 uppercase">
+              {data?.title?.es && (
+                <h1 className="font-display text-4xl">
+                  {data.title[language] || data.title.es}
+                </h1>
               )}
             </div>
-            <div className="">
-              <NavLink to="/">
-                <X size={36} />
-              </NavLink>
+            <div className="fixed top-8 right-12 z-120">
+              <button
+                className="font-display cursor-pointer bg-black"
+                onClick={() => navigate(-1)}
+              >
+                {/* TODO: add language */}
+                VOLVER
+              </button>
             </div>
           </div>
 
