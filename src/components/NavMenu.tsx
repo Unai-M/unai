@@ -58,7 +58,7 @@ export default function NavMenu({ theme }: NavMenuProps) {
   );
 
   const baseBtnClass = `${
-    isLight ? "bg-foreground" : "bg-black/70"
+    isLight ? "border border-foreground" : "bg-black/70"
   } cursor-pointer rounded font-mono text-sm uppercase transition duration-1000`;
 
   return (
@@ -71,7 +71,7 @@ export default function NavMenu({ theme }: NavMenuProps) {
     >
       <div
         className={`${
-          isLight ? "text-[rgba(23,_112,_193,_0.99)]" : "text-foreground"
+          isLight ? "" : "text-foreground"
         } flex items-center gap-1 rounded-2xl px-4 transition duration-1000`}
       >
         {buttons.map(({ key, label, onClick, className }) => (
