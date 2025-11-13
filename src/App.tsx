@@ -10,10 +10,9 @@ import { useInView, AnimatePresence } from "motion/react";
 import Archive from "./pages/Archive";
 import VimeoBackground from "./components/VimeoBackground";
 import BackgroundDecorations from "./components/BackgroundDecorations";
-import LanguageToggle from "@/components/LanguageToggle";
 import ManifestoFilm from "./pages/ManifestoFilm";
 import ManifestoFilmBackground from "./components/ManifestoFilmBackground";
-import ContactButton from "./components/ContactButton";
+import Sidebar from "./components/Sidebar";
 
 function App() {
   const startRef = useRef(null);
@@ -60,17 +59,7 @@ function App() {
       <AnimatePresence>
         {isManifestoFilmInView && <ManifestoFilmBackground key="maniFilmBg" />}
         {shouldShowUI && <BackgroundDecorations key="bgDec" />}
-        {shouldShowUI && (
-          <NavMenu
-            theme={
-              isEndInView &&
-              location.pathname !== "/tratamientos" &&
-              location.pathname !== "/archivo"
-                ? "light"
-                : "dark"
-            }
-          />
-        )}
+        {shouldShowUI && <NavMenu />}
       </AnimatePresence>
 
       <div
@@ -105,16 +94,7 @@ function App() {
         </div>
       </section>
 
-      <AnimatePresence>
-        {shouldShowUI && (
-          <div className="pointer-events-none fixed top-0 right-12 z-120 flex h-screen flex-col justify-center">
-            <div className="pointer-events-auto flex flex-col items-center gap-2">
-              <ContactButton />
-              <LanguageToggle />
-            </div>
-          </div>
-        )}
-      </AnimatePresence>
+      <AnimatePresence>{shouldShowUI && <Sidebar />}</AnimatePresence>
 
       <div className="pointer-events-none fixed inset-0">
         <Noise
