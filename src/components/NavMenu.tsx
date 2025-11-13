@@ -67,18 +67,19 @@ export default function NavMenu({ theme }: NavMenuProps) {
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: 40 }}
       transition={{ duration: 1 }}
-      className="fixed bottom-12 left-0 z-30 flex w-full items-start justify-center"
+      className="_bottom-12 fixed bottom-0 left-0 z-30 flex w-full items-start justify-center"
     >
       <div
         className={`${
           isLight ? "" : "text-foreground"
-        } flex items-center gap-1 rounded-2xl px-4 transition duration-1000`}
+        } border-foreground/50 _rounded-2xl divide-foreground/50 _px-4 ml-[4px] grid grid-cols-4 items-center gap-1 divide-x border border-b-0 transition duration-1000`}
       >
         {buttons.map(({ key, label, onClick, className }) => (
           <button
             key={key}
             onClick={onClick}
-            className={`${baseBtnClass} ${className}`}
+            className="p-6"
+            // className={`${baseBtnClass} ${className}`}
           >
             {label}
           </button>
