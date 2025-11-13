@@ -39,9 +39,9 @@ export default function ProjectCard({ project }: { project: Project }) {
               isHovering={isHovering}
             />
           )}
-          <div className="pointer-events-none absolute inset-0 mx-8 mb-8 flex items-center justify-between gap-2">
+          <div className="pointer-events-none absolute inset-0 mx-4 flex items-center justify-between gap-2">
             {project.title && (
-              <h3 className="text-2xl tracking-wider uppercase">
+              <h3 className="tracking-wider uppercase">
                 {project.title[language] ?? project.title.es}
               </h3>
             )}
