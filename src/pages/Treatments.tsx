@@ -1,15 +1,7 @@
 import { useTreatmentProjects } from "@/hooks/useTreatmentProjects";
 import Loading from "@/components/Loading";
 import useLanguage from "@/hooks/useLanguage";
-import { urlFor } from "../lib/sanityImageUrl";
 import { motion } from "motion/react";
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
-} from "@/components/ui/carousel";
 import { BlockContentComponent } from "@/components/BlockContentComponent";
 import { PortableText } from "@portabletext/react";
 import ErrorPage from "./ErrorPage";
@@ -43,52 +35,57 @@ export default function Treatment() {
           scaleX: 1,
           transition: { duration: 0.15 },
         }}
-        className="flex w-full justify-center"
+        className="flex flex-col justify-center gap-8 px-8 py-16"
       >
         {/* grilla de puntos */}
-        <motion.div
+        {/* <motion.div
           initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
+          animate={{ opacity: 0.2 }}
           transition={{ duration: 0.3, delay: 1.4 }}
           exit={{ opacity: 0 }}
-          className="fixed top-[5vh] left-[20vw] h-[95vh] w-[60vw] bg-[radial-gradient(circle_at_1px_1px,oklch(0.9367_0.1179_261.9)_1px,transparent_0)] [background-size:80px_80px]"
-        />
-        <Carousel className="">
-          <CarouselContent>
-            {data?.length &&
-              data.map((project) => {
-                return (
-                  <CarouselItem key={project._id} className="">
-                    <div className="flex h-screen max-w-full flex-col items-center justify-center gap-4">
-                      {project.image?.url && (
-                        <img
-                          src={urlFor(project.image.url)
-                            .format("webp")
-                            .width(1200)
-                            .url()}
-                          className="max-w-screen rounded"
-                        />
-                      )}
+          className="fixed h-full w-full bg-[radial-gradient(circle_at_1px_1px,oklch(0.9367_0.1179_261.9)_1px,transparent_0)] [background-size:80px_80px] opacity-20"
+        /> */}
 
-                      <div className="flex w-full justify-center overflow-auto">
-                        {project.description?.es && (
-                          <PortableText
-                            value={
-                              project.description[language] ??
-                              project.description.es
-                            }
-                            components={BlockContentComponent}
-                          />
-                        )}
-                      </div>
-                    </div>
-                  </CarouselItem>
-                );
-              })}
-          </CarouselContent>
-          <CarouselPrevious className="fixed top-1/2 left-1/8" />
-          <CarouselNext className="fixed top-1/2 right-1/8" />
-        </Carousel>
+        <div className="mx-auto w-[80vw] max-w-7xl columns-2 flex-col gap-4">
+          <p>
+            Desarrollar un tratamiento es tomar una idea en bruto y darle una
+            forma que se pueda imaginar, sentir y visualizar. Es explorar el
+            tono, la narrativa y la estética que mejor revelan la intención del
+            proyecto. Investigo, propongo imágenes, construyo atmósferas y
+            diseño un recorrido que permita entender cómo podría vivir esa pieza
+            en pantalla.
+          </p>
+          <p>
+            Mi trabajo es traducir conceptos en una visión concreta: encontrar
+            el ángulo preciso, ordenar las sensaciones y abrir caminos posibles
+            para que una historia se vea con claridad antes de existir. Cada
+            tratamiento es un pequeño ejercicio de descubrimiento, una manera de
+            acercarse a la esencia del proyecto y mostrarla con fuerza y
+            coherencia.
+          </p>
+        </div>
+
+        <div className="flex flex-col pt-16">
+          {data?.map((project) => (
+            <div key={project._id} className="grid grid-cols-2 gap-4">
+              {project.title && (
+                <h2 className="font-display justify-self-end leading-none font-black">
+                  {project.title[language]}
+                </h2>
+              )}
+              {project?.description?.es && (
+                <div className="font-mono text-xs">
+                  <PortableText
+                    value={
+                      project.description[language] ?? project.description.es
+                    }
+                    components={BlockContentComponent}
+                  />
+                </div>
+              )}
+            </div>
+          ))}
+        </div>
       </motion.div>
     </motion.section>
   );

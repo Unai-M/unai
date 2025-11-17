@@ -21,7 +21,7 @@ export default function ProjectCard({ project }: { project: Project }) {
   };
 
   return (
-    <motion.div className="w-fit flex-col gap-4 rounded pt-4">
+    <motion.div className="w-fit flex-col gap-4 overflow-hidden rounded-lg">
       <NavLink
         to={`/direccion/${project.slug?.current}`}
         onMouseEnter={handleMouseEnter}
@@ -39,14 +39,14 @@ export default function ProjectCard({ project }: { project: Project }) {
               isHovering={isHovering}
             />
           )}
-          <div className="pointer-events-none absolute inset-0 mx-4 flex items-center justify-between gap-2">
+          <div className="pointer-events-none absolute inset-0 flex items-end justify-between rounded-lg bg-gradient-to-t from-black/70 to-transparent to-60% p-3">
             {project.title && (
-              <h3 className="tracking-wider uppercase">
+              <h3 className="font-display leading-none uppercase">
                 {project.title[language] ?? project.title.es}
               </h3>
             )}
             {project.projectType && (
-              <span className="font-mono text-sm lowercase">
+              <span className="font-mono text-sm leading-none uppercase">
                 {project.projectType[language] ?? project.projectType.es}
               </span>
             )}

@@ -43,7 +43,7 @@ export default function Archive() {
                 transition: { duration: 0.15 },
               }
         }
-        className={`${data?.length && data.length > 18 ? "border-foreground/50 border-b" : ""} flex w-1/2 flex-col justify-center overflow-y-scroll pb-2`}
+        className={`${data?.length && data.length > 18 ? "border-foreground/50 border-b" : ""} flex flex-col justify-center gap-1 overflow-y-scroll pb-2`}
       >
         {data?.length &&
           data.map((project) => {
@@ -53,20 +53,23 @@ export default function Archive() {
                 to={`/direccion/${project.slug?.current}`}
                 onClick={() => setIsNavigating(true)}
               >
-                <div className="mb-2 flex items-center gap-8">
-                  <span className="font-mono">
+                <div className="align-items-center grid grid-cols-2 gap-4">
+                  <span className="justify-self-end font-mono text-sm">
                     {project.date ?? project.date}
                   </span>
-                  {project.title && (
-                    <h3 className="font-thin tracking-wider uppercase">
-                      {project.title[language] ?? project.title.es}
-                    </h3>
-                  )}
-                  {project.projectType && (
-                    <span className="font-mono text-sm">
-                      {project.projectType[language] ?? project.projectType.es}
-                    </span>
-                  )}
+                  <div className="flex items-center gap-1">
+                    {project.title && (
+                      <h3 className="font-display leading-none font-black uppercase">
+                        {project.title[language] ?? project.title.es}
+                      </h3>
+                    )}
+                    {project.projectType && (
+                      <span className="bg-background rounded-full px-2 font-mono text-xs text-black">
+                        {project.projectType[language] ??
+                          project.projectType.es}
+                      </span>
+                    )}
+                  </div>
                 </div>
               </NavLink>
             );

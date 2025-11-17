@@ -4,7 +4,7 @@ import Loading from "@/components/Loading";
 import useLanguage from "@/hooks/useLanguage";
 import { BlockContentComponent } from "../components/BlockContentComponent";
 import ErrorPage from "./ErrorPage";
-import { ArrowBigDownDash } from "lucide-react";
+import { ArrowDown } from "lucide-react";
 import { motion } from "motion/react";
 
 export default function Manifesto() {
@@ -32,7 +32,7 @@ export default function Manifesto() {
         components={BlockContentComponent}
       />
       <motion.div
-        className="mt-6 flex w-full justify-center"
+        className="mt-6 flex w-full justify-center opacity-70"
         animate={{ y: 10 }}
         transition={{
           duration: 1,
@@ -41,7 +41,7 @@ export default function Manifesto() {
           repeatType: "reverse",
         }}
       >
-        <ArrowBigDownDash />
+        <ArrowDown strokeWidth={1} size={32} />
       </motion.div>
     </motion.div>
   );

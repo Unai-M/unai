@@ -26,7 +26,7 @@ export default function ManifestoFilm() {
             <VimeoPlayer url={profile.manifestoVimeoId} />
           </motion.div>
           {profile.note && (
-            <p className="mt-2 text-xs opacity-70">
+            <p className="mt-2 font-mono text-xs opacity-70">
               {profile.note[language] || profile.note.es}
             </p>
           )}

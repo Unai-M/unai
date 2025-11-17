@@ -20,7 +20,7 @@ export default function Project() {
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5, ease: "easeInOut" }}
       exit={{ opacity: 0 }}
-      className="no-doc-scroll fixed inset-0 z-[100] flex w-full flex-col items-center overflow-y-scroll bg-black"
+      className="no-doc-scroll fixed inset-0 z-[100] flex w-full flex-col items-center overflow-y-scroll bg-black py-24"
     >
       {isLoading && <Loading />}
 
@@ -36,23 +36,19 @@ export default function Project() {
           <div className="-z-10">
             <Lines />
           </div>
-          <div className="mb-8 flex w-full items-center justify-between gap-2 px-12 pt-8">
-            <div className="flex items-center gap-3 uppercase">
-              {data?.title?.es && (
-                <h1 className="font-display text-4xl">
-                  {data.title[language] || data.title.es}
-                </h1>
-              )}
-            </div>
-            <div className="fixed top-8 right-12 z-120">
-              <button
-                className="font-display cursor-pointer bg-black"
-                onClick={() => navigate(-1)}
-              >
-                {/* TODO: add language */}
-                VOLVER
-              </button>
-            </div>
+
+          <div className="fixed top-0 left-0 flex w-full items-start justify-between px-2 pt-1 uppercase">
+            <h1 className="font-display text-4xl font-black">
+              {data?.title?.es && (data.title[language] || data.title.es)}
+            </h1>
+
+            <button
+              className="cursor-pointer transition-colors hover:text-amber-500"
+              onClick={() => navigate(-1)}
+            >
+              {/* TODO: add language */}
+              VOLVER
+            </button>
           </div>
 
           {data?.vimeoId && (
