@@ -18,6 +18,33 @@
 
 @custom-variant dark (&:is(.dark *));
 
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-blue);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--foreground);
+}
+
+@-moz-document url-prefix() {
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: var(--foreground) var(--color-blue);
+  }
+}
+
+::selection {
+  background: var(--foreground);
+  color: var(--color-blue);
+}
+
+* {
+  scrollbar-gutter: stable;
+}
+
 :root {
   overscroll-behavior-y: none;
 
