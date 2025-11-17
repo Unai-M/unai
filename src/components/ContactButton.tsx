@@ -1,4 +1,4 @@
-import { Contact } from "lucide-react";
+import { UserRound } from "lucide-react";
 import { useState, useRef } from "react";
 import { useProfile } from "../hooks/useProfile";
 import useLanguage from "@/hooks/useLanguage";
@@ -19,9 +19,9 @@ export default function ContactButton() {
           e.stopPropagation();
           setIsOpen((prev) => !prev);
         }}
-        className="z-20 cursor-pointer"
+        className="text-blue bg-foreground z-20 flex size-6 cursor-pointer items-center justify-center rounded-full transition-colors hover:bg-amber-500"
       >
-        <Contact strokeWidth={1.25} size={24} />
+        <UserRound strokeWidth={1.5} size={24} />
       </motion.div>
 
       <AnimatePresence>
@@ -43,17 +43,17 @@ function ContactWindow({ onClose }: { onClose: () => void }) {
       transition={{ duration: 0.2 }}
       className="fixed inset-0 z-10 flex items-center justify-center"
     >
-      <div className="absolute inset-0 bg-black/20" onClick={onClose} />
+      <div className="absolute inset-0 bg-black/30" onClick={onClose} />
 
       <motion.div
         initial={{ scaleY: 0 }}
         animate={{ scaleY: 1 }}
         exit={{ scaleY: 0 }}
         transition={{ duration: 0.15 }}
-        className="border-foreground/30 relative z-20 rounded-2xl border px-6 py-4 font-mono text-white backdrop-blur-2xl"
+        className="border-foreground/30 bg-foreground text-blue relative z-20 px-4 pt-3 pb-4 font-mono text-sm"
         onClick={(e) => e.stopPropagation()}
       >
-        <h1 className="mb-2 text-2xl uppercase">
+        <h1 className="font-display mb-2 text-2xl uppercase">
           {language === "es" ? "contacto" : "contact"}
         </h1>
 
@@ -66,7 +66,7 @@ function ContactWindow({ onClose }: { onClose: () => void }) {
           </a>
         )}
 
-        <div className="flex flex-col items-start gap-2">
+        <div className="flex flex-col items-start pt-4">
           {data?.links?.length &&
             data.links.map((link) => (
               <a

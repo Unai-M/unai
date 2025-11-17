@@ -29,14 +29,14 @@ export default function NavMenu() {
         onClick: () => scrollToSection("direction"),
       },
       {
-        key: "manifesto",
-        label: language === "es" ? "manifiesto" : "manifesto",
-        onClick: () => scrollToSection("manifiesto"),
-      },
-      {
         key: "treatments",
         label: language === "es" ? "tratamientos" : "treatments",
         onClick: () => navigate("/tratamientos"),
+      },
+      {
+        key: "manifesto",
+        label: language === "es" ? "manifiesto" : "manifesto",
+        onClick: () => scrollToSection("manifiesto"),
       },
       {
         key: "archive",
@@ -53,13 +53,23 @@ export default function NavMenu() {
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: 40 }}
       transition={{ duration: 1 }}
-      className="_bottom-12 fixed bottom-0 left-0 z-30 flex w-full items-start justify-center"
+      className="fixed bottom-0 left-0 z-30 flex w-full items-start justify-center px-2"
     >
-      <div className="border-foreground/50 _rounded-2xl divide-foreground/50 _px-4 ml-[4px] grid grid-cols-4 items-center gap-1 divide-x border border-b-0 transition duration-1000">
-        {buttons.map(({ key, label, onClick }) => (
-          <button key={key} onClick={onClick} className="p-6">
-            {label}
-          </button>
+      <div className="ml-[4px] flex w-full items-center justify-center pb-4 transition duration-1000">
+        {buttons.map(({ key, label, onClick }, index) => (
+          <>
+            <button
+              key={key}
+              onClick={onClick}
+              // ${index === 0 ? "rounded-l-full rounded-r-xs" : index === buttons.length - 1 ? "rounded-l-xs rounded-r-full" : "rounded-xs"}
+              className={`text-blue bg-foreground w-36 cursor-pointer rounded-full text-center uppercase transition-colors hover:bg-amber-500`}
+            >
+              {label}
+            </button>
+            {index !== buttons.length - 1 && (
+              <div className="bg-foreground/50 h-[1px] w-4" />
+            )}
+          </>
         ))}
       </div>
     </motion.header>
