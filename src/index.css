@@ -41,10 +41,6 @@
   color: var(--color-blue);
 }
 
-* {
-  scrollbar-gutter: stable;
-}
-
 :root {
   overscroll-behavior-y: none;
 
