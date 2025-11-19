@@ -10,7 +10,7 @@ const directionProjectsListQuery =
   previewId,
   isHighlighted,
   projectType -> {en, es},
-  previewImage { "url": asset->url },
+  previewImage
 }`);
 
 export async function getDirectionProjectsList() {

@@ -88,7 +88,7 @@ export default function Archive() {
         })}
 
         <AnimatePresence>
-          {isHovering && hoveredProject?.previewImage?.url && (
+          {isHovering && hoveredProject?.previewImage && (
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -97,7 +97,7 @@ export default function Archive() {
               className="pointer-events-none fixed inset-0 -z-10 flex h-screen w-full items-center justify-center"
             >
               <img
-                src={urlFor(hoveredProject.previewImage.url)
+                src={urlFor(hoveredProject.previewImage)
                   .format("webp")
                   .width(800)
                   .url()}
