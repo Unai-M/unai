@@ -43,7 +43,7 @@ export default function Archive() {
                 transition: { duration: 0.15 },
               }
         }
-        className={`${data?.length && data.length > 18 ? "border-foreground/50 border-b" : ""} flex flex-col justify-center gap-1 overflow-y-scroll pb-2`}
+        className={`${data?.length && data.length > 18 ? "border-foreground/50 border-b" : ""} flex flex-col justify-center gap-1 overflow-y-auto px-8 pb-2`}
       >
         {data?.length &&
           data.map((project) => {

@@ -65,7 +65,7 @@ export default function Treatment() {
           </p>
         </div>
 
-        <div className="flex flex-col pt-16">
+        <div className="flex flex-col overflow-y-auto px-8 pt-16">
           {data?.map((project) => (
             <div key={project._id} className="grid grid-cols-2 gap-4">
               {project.title && (
