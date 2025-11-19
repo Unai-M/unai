@@ -17,7 +17,7 @@ export default function ManifestoFilm() {
       {profile?.manifestoVimeoId && (
         <>
           <motion.div
-            className="w-[80vw]"
+            className="w-[95vw] sm:w-[80vw]"
             initial={{ opacity: 0, scale: 0.8 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ amount: 0.4 }}

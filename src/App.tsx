@@ -91,11 +91,14 @@ function App() {
 
       <section
         id="manifiesto"
-        className="flex min-h-[100vh] flex-col items-center pb-24"
+        className="flex min-h-[100vh] flex-col items-center sm:pb-24"
         ref={endRef}
       >
         <Manifesto />
-        <div className="_mt-12 flex flex-col items-center" ref={manifestoFilm}>
+        <div
+          className="_mt-12 flex h-screen flex-col items-center justify-center sm:h-auto"
+          ref={manifestoFilm}
+        >
           {isEndInView && <ManifestoFilm />}
         </div>
       </section>
