@@ -5,41 +5,50 @@ import { NavLink } from "react-router";
 import useLanguage from "@/hooks/useLanguage";
 import type { DirectionProjectsListQueryResult } from "@/lib/types";
 import VimeoHoverPlayer from "./VimeoHoverPlayer";
+import useIsMobile from "@/hooks/useIsMobile";
 
 type Project = DirectionProjectsListQueryResult[number];
 
 export default function ProjectCard({ project }: { project: Project }) {
   const { language } = useLanguage();
   const [isHovering, setIsHovering] = useState(false);
+  const isMobile = useIsMobile();
 
-  const handleMouseEnter = () => {
-    setIsHovering(true);
-  };
+  const handleMouseEnter = () => setIsHovering(true);
+  const handleMouseLeave = () => setIsHovering(false);
 
-  const handleMouseLeave = () => {
-    setIsHovering(false);
-  };
+  const previewImageUrl = project.previewImage
+    ? urlFor(project?.previewImage).width(700).format("webp").url()
+    : null;
+
+  const hasVideo = Boolean(project.previewId);
 
   return (
-    <motion.div className="_gap-4 w-fit flex-col overflow-hidden rounded-lg">
+    <motion.div className="flex-col overflow-hidden rounded-lg">
       <NavLink
         to={`/direccion/${project.slug?.current}`}
-        onMouseEnter={handleMouseEnter}
-        onMouseLeave={handleMouseLeave}
+        onMouseEnter={!isMobile ? handleMouseEnter : undefined}
+        onMouseLeave={!isMobile ? handleMouseLeave : undefined}
       >
-        <div className="relative w-[700px] rounded-2xl">
-          {project?.previewId && project?.previewImage?.url && (
+        <div className="relative rounded-2xl sm:w-[700px]">
+          {!isMobile && hasVideo && previewImageUrl && (
             <VimeoHoverPlayer
-              className="w-full scale-102 rounded-2xl"
-              videoEmbed={project.previewId}
-              imageUrl={urlFor(project?.previewImage?.url)
-                .width(700)
-                .format("webp")
-                .url()}
+              className="w-full rounded-2xl"
+              videoEmbed={project.previewId!}
+              imageUrl={previewImageUrl}
               isHovering={isHovering}
             />
           )}
-          <div className="pointer-events-none absolute inset-0 flex w-full scale-102 items-end justify-between rounded-lg bg-gradient-to-t from-black/70 to-transparent to-60% p-5">
+
+          {isMobile && previewImageUrl && (
+            <img src={previewImageUrl} alt="" className="w-full rounded-2xl" />
+          )}
+
+          {!hasVideo && previewImageUrl && (
+            <img src={previewImageUrl} alt="" className="w-full rounded-2xl" />
+          )}
+
+          <div className="pointer-events-none absolute inset-0 flex w-full items-end justify-between rounded-lg bg-gradient-to-t from-black/70 to-transparent to-60% p-5">
             {project.title && (
               <h3 className="font-display leading-none uppercase">
                 {project.title[language] ?? project.title.es}
