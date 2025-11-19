@@ -1,7 +1,7 @@
 import { useDirectionProjectsList } from "@/hooks/useDirectionProjectsList";
 import useLanguage from "@/hooks/useLanguage";
 import ErrorPage from "./ErrorPage";
-import { motion } from "motion/react";
+import { AnimatePresence, motion } from "motion/react";
 import Loading from "@/components/Loading";
 import { NavLink } from "react-router";
 import { useState } from "react";
@@ -87,23 +87,26 @@ export default function Archive() {
           );
         })}
 
-        {isHovering && hoveredProject?.previewImage?.url && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.8, ease: "easeInOut" }}
-            className="pointer-events-none fixed inset-0 -z-10 flex h-screen w-full items-center justify-center"
-          >
-            <img
-              src={urlFor(hoveredProject.previewImage.url)
-                .format("webp")
-                .width(800)
-                .url()}
-              alt=""
-              className="max-h-[95vh] max-w-[800px] rounded-sm object-contain opacity-80"
-            />
-          </motion.div>
-        )}
+        <AnimatePresence>
+          {isHovering && hoveredProject?.previewImage?.url && (
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.3, ease: "easeInOut" }}
+              className="pointer-events-none fixed inset-0 -z-10 flex h-screen w-full items-center justify-center"
+            >
+              <img
+                src={urlFor(hoveredProject.previewImage.url)
+                  .format("webp")
+                  .width(800)
+                  .url()}
+                alt=""
+                className="max-h-[95vh] max-w-[800px] rounded-sm object-contain opacity-80"
+              />
+            </motion.div>
+          )}
+        </AnimatePresence>
       </motion.div>
     </motion.section>
   );
