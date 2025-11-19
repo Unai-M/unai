@@ -32,7 +32,9 @@ export default function Direction() {
                 }`}
                 key={project._id}
               >
-                <ProjectCard project={project} />
+                <div rounded-lg>
+                  <ProjectCard project={project} />
+                </div>
               </motion.div>
             );
           })}

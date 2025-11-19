@@ -21,16 +21,16 @@ export default function ProjectCard({ project }: { project: Project }) {
   };
 
   return (
-    <motion.div className="w-fit flex-col gap-4 overflow-hidden rounded-lg">
+    <motion.div className="_gap-4 w-fit flex-col overflow-hidden rounded-lg">
       <NavLink
         to={`/direccion/${project.slug?.current}`}
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
       >
-        <div className="relative w-[700px]">
+        <div className="relative w-[700px] rounded-2xl">
           {project?.previewId && project?.previewImage?.url && (
             <VimeoHoverPlayer
-              className="w-auto rounded-lg"
+              className="w-full scale-102 rounded-2xl"
               videoEmbed={project.previewId}
               imageUrl={urlFor(project?.previewImage?.url)
                 .width(700)
@@ -39,7 +39,7 @@ export default function ProjectCard({ project }: { project: Project }) {
               isHovering={isHovering}
             />
           )}
-          <div className="pointer-events-none absolute inset-0 flex items-end justify-between rounded-lg bg-gradient-to-t from-black/70 to-transparent to-60% p-3">
+          <div className="pointer-events-none absolute inset-0 flex w-full scale-102 items-end justify-between rounded-lg bg-gradient-to-t from-black/70 to-transparent to-60% p-5">
             {project.title && (
               <h3 className="font-display leading-none uppercase">
                 {project.title[language] ?? project.title.es}
