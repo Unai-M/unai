@@ -24,16 +24,16 @@ export default function ProjectCard({ project }: { project: Project }) {
   const hasVideo = Boolean(project.previewId);
 
   return (
-    <motion.div className="flex-col overflow-hidden rounded-lg">
+    <motion.div className="h-full w-full flex-col">
       <NavLink
         to={`/direccion/${project.slug?.current}`}
         onMouseEnter={!isMobile ? handleMouseEnter : undefined}
         onMouseLeave={!isMobile ? handleMouseLeave : undefined}
       >
-        <div className="relative rounded-2xl sm:w-[700px]">
+        <div className="relative w-full overflow-hidden rounded-lg">
           {!isMobile && hasVideo && previewImageUrl && (
             <VimeoHoverPlayer
-              className="w-full rounded-2xl"
+              className="w-full"
               videoEmbed={project.previewId!}
               imageUrl={previewImageUrl}
               isHovering={isHovering}
@@ -41,14 +41,14 @@ export default function ProjectCard({ project }: { project: Project }) {
           )}
 
           {isMobile && previewImageUrl && (
-            <img src={previewImageUrl} alt="" className="w-full rounded-2xl" />
+            <img src={previewImageUrl} alt="" className="w-full" />
           )}
 
           {!hasVideo && previewImageUrl && (
-            <img src={previewImageUrl} alt="" className="w-full rounded-2xl" />
+            <img src={previewImageUrl} alt="" className="w-full" />
           )}
 
-          <div className="pointer-events-none absolute inset-0 flex w-full items-end justify-between rounded-lg bg-gradient-to-t from-black/70 to-transparent to-60% p-5">
+          <div className="pointer-events-none absolute inset-0 flex w-full items-end justify-between bg-gradient-to-t from-black/70 to-transparent to-60% p-5">
             {project.title && (
               <h3 className="font-display leading-none uppercase">
                 {project.title[language] ?? project.title.es}

@@ -100,7 +100,7 @@ const VimeoHoverPlayer: React.FC<VimeoHoverPlayerProps> = ({
   return (
     <div className={`_overflow-hidden relative ${className}`}>
       <div className="absolute inset-0 flex items-center justify-center bg-black">
-        <img className="_w-full" src={imageUrl} alt="" />
+        <img className="w-full" src={imageUrl} alt="" />
       </div>
       <div
         ref={containerRef}
