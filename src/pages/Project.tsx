@@ -43,11 +43,10 @@ export default function Project() {
             </h1>
 
             <button
-              className="cursor-pointer transition-colors hover:text-amber-500"
+              className="cursor-pointer uppercase transition-colors hover:text-amber-500"
               onClick={() => navigate(-1)}
             >
-              {/* TODO: add language */}
-              VOLVER
+              {language === "es" ? "volver" : "back"}
             </button>
           </div>
 
