@@ -41,7 +41,7 @@ function ContactWindow({ onClose }: { onClose: () => void }) {
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
       transition={{ duration: 0.2 }}
-      className="fixed inset-0 z-10 flex items-center justify-center"
+      className="fixed inset-0 z-10 flex items-center justify-center backdrop-brightness-80"
     >
       <div className="absolute inset-0 bg-black/30" onClick={onClose} />
 
