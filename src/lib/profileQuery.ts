@@ -8,7 +8,10 @@ const profileQuery = defineQuery(`*[_type == "profile"][0] {
   note,
   reelVimeoId,
   email,
-  links
+  links,
+  treatmentsVideo,
+  isTreatmentsListVisible,
+  treatmentsText
 }`);
 
 export async function getProfile() {

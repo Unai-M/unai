@@ -21,42 +21,8 @@ export type Profile = {
   _rev: string;
   name?: string;
   manifesto?: {
-    es?: Array<{
-      children?: Array<{
-        marks?: Array<string>;
-        text?: string;
-        _type: "span";
-        _key: string;
-      }>;
-      style?: "normal";
-      listItem?: never;
-      markDefs?: Array<{
-        href?: string;
-        _type: "link";
-        _key: string;
-      }>;
-      level?: number;
-      _type: "block";
-      _key: string;
-    }>;
-    en?: Array<{
-      children?: Array<{
-        marks?: Array<string>;
-        text?: string;
-        _type: "span";
-        _key: string;
-      }>;
-      style?: "normal";
-      listItem?: never;
-      markDefs?: Array<{
-        href?: string;
-        _type: "link";
-        _key: string;
-      }>;
-      level?: number;
-      _type: "block";
-      _key: string;
-    }>;
+    es?: BlockContent;
+    en?: BlockContent;
   };
   manifestoVimeoId?: string;
   note?: {
@@ -71,7 +37,32 @@ export type Profile = {
     _type: "link";
     _key: string;
   }>;
+  treatmentsVideo?: string;
+  isTreatmentsListVisible?: boolean;
+  treatmentsText?: {
+    es?: BlockContent;
+    en?: BlockContent;
+  };
 };
+
+export type BlockContent = Array<{
+  children?: Array<{
+    marks?: Array<string>;
+    text?: string;
+    _type: "span";
+    _key: string;
+  }>;
+  style?: "normal";
+  listItem?: never;
+  markDefs?: Array<{
+    href?: string;
+    _type: "link";
+    _key: string;
+  }>;
+  level?: number;
+  _type: "block";
+  _key: string;
+}>;
 
 export type TreatmentProject = {
   _id: string;
@@ -98,43 +89,31 @@ export type TreatmentProject = {
     _type: "image";
   };
   description?: {
-    es?: Array<{
-      children?: Array<{
-        marks?: Array<string>;
-        text?: string;
-        _type: "span";
-        _key: string;
-      }>;
-      style?: "normal";
-      listItem?: never;
-      markDefs?: Array<{
-        href?: string;
-        _type: "link";
-        _key: string;
-      }>;
-      level?: number;
-      _type: "block";
-      _key: string;
-    }>;
-    en?: Array<{
-      children?: Array<{
-        marks?: Array<string>;
-        text?: string;
-        _type: "span";
-        _key: string;
-      }>;
-      style?: "normal";
-      listItem?: never;
-      markDefs?: Array<{
-        href?: string;
-        _type: "link";
-        _key: string;
-      }>;
-      level?: number;
-      _type: "block";
-      _key: string;
-    }>;
+    es?: BlockContent;
+    en?: BlockContent;
   };
+};
+
+export type SanityImageCrop = {
+  _type: "sanity.imageCrop";
+  top?: number;
+  bottom?: number;
+  left?: number;
+  right?: number;
+};
+
+export type SanityImageHotspot = {
+  _type: "sanity.imageHotspot";
+  x?: number;
+  y?: number;
+  height?: number;
+  width?: number;
+};
+
+export type Slug = {
+  _type: "slug";
+  current?: string;
+  source?: string;
 };
 
 export type DirectionProject = {
@@ -184,42 +163,8 @@ export type DirectionProject = {
     _key: string;
   }>;
   description?: {
-    es?: Array<{
-      children?: Array<{
-        marks?: Array<string>;
-        text?: string;
-        _type: "span";
-        _key: string;
-      }>;
-      style?: "normal";
-      listItem?: never;
-      markDefs?: Array<{
-        href?: string;
-        _type: "link";
-        _key: string;
-      }>;
-      level?: number;
-      _type: "block";
-      _key: string;
-    }>;
-    en?: Array<{
-      children?: Array<{
-        marks?: Array<string>;
-        text?: string;
-        _type: "span";
-        _key: string;
-      }>;
-      style?: "normal";
-      listItem?: never;
-      markDefs?: Array<{
-        href?: string;
-        _type: "link";
-        _key: string;
-      }>;
-      level?: number;
-      _type: "block";
-      _key: string;
-    }>;
+    es?: BlockContent;
+    en?: BlockContent;
   };
   credits?: Array<{
     role?: {
@@ -241,25 +186,6 @@ export type ProjectType = {
   es?: string;
   en?: string;
 };
-
-export type BlockContent = Array<{
-  children?: Array<{
-    marks?: Array<string>;
-    text?: string;
-    _type: "span";
-    _key: string;
-  }>;
-  style?: "normal";
-  listItem?: never;
-  markDefs?: Array<{
-    href?: string;
-    _type: "link";
-    _key: string;
-  }>;
-  level?: number;
-  _type: "block";
-  _key: string;
-}>;
 
 export type SanityImagePaletteSwatch = {
   _type: "sanity.imagePaletteSwatch";
@@ -287,20 +213,15 @@ export type SanityImageDimensions = {
   aspectRatio?: number;
 };
 
-export type SanityImageHotspot = {
-  _type: "sanity.imageHotspot";
-  x?: number;
-  y?: number;
-  height?: number;
-  width?: number;
-};
-
-export type SanityImageCrop = {
-  _type: "sanity.imageCrop";
-  top?: number;
-  bottom?: number;
-  left?: number;
-  right?: number;
+export type SanityImageMetadata = {
+  _type: "sanity.imageMetadata";
+  location?: Geopoint;
+  dimensions?: SanityImageDimensions;
+  palette?: SanityImagePalette;
+  lqip?: string;
+  blurHash?: string;
+  hasAlpha?: boolean;
+  isOpaque?: boolean;
 };
 
 export type SanityFileAsset = {
@@ -323,6 +244,13 @@ export type SanityFileAsset = {
   path?: string;
   url?: string;
   source?: SanityAssetSourceData;
+};
+
+export type SanityAssetSourceData = {
+  _type: "sanity.assetSourceData";
+  name?: string;
+  id?: string;
+  url?: string;
 };
 
 export type SanityImageAsset = {
@@ -348,17 +276,6 @@ export type SanityImageAsset = {
   source?: SanityAssetSourceData;
 };
 
-export type SanityImageMetadata = {
-  _type: "sanity.imageMetadata";
-  location?: Geopoint;
-  dimensions?: SanityImageDimensions;
-  palette?: SanityImagePalette;
-  lqip?: string;
-  blurHash?: string;
-  hasAlpha?: boolean;
-  isOpaque?: boolean;
-};
-
 export type Geopoint = {
   _type: "geopoint";
   lat?: number;
@@ -366,20 +283,7 @@ export type Geopoint = {
   alt?: number;
 };
 
-export type Slug = {
-  _type: "slug";
-  current?: string;
-  source?: string;
-};
-
-export type SanityAssetSourceData = {
-  _type: "sanity.assetSourceData";
-  name?: string;
-  id?: string;
-  url?: string;
-};
-
-export type AllSanitySchemaTypes = Profile | TreatmentProject | DirectionProject | ProjectType | BlockContent | SanityImagePaletteSwatch | SanityImagePalette | SanityImageDimensions | SanityImageHotspot | SanityImageCrop | SanityFileAsset | SanityImageAsset | SanityImageMetadata | Geopoint | Slug | SanityAssetSourceData;
+export type AllSanitySchemaTypes = Profile | BlockContent | TreatmentProject | SanityImageCrop | SanityImageHotspot | Slug | DirectionProject | ProjectType | SanityImagePaletteSwatch | SanityImagePalette | SanityImageDimensions | SanityImageMetadata | SanityFileAsset | SanityAssetSourceData | SanityImageAsset | Geopoint;
 export declare const internalGroqTypeReferenceTo: unique symbol;
 // Source: ../unai/src/lib/directionProjectsListQuery.ts
 // Variable: directionProjectsListQuery
@@ -414,46 +318,12 @@ export type DirectionProjectsListQueryResult = Array<{
 
 // Source: ../unai/src/lib/profileQuery.ts
 // Variable: profileQuery
-// Query: *[_type == "profile"][0] {  name,  manifesto,  manifestoVimeoId,  note,  reelVimeoId,  email,  links}
+// Query: *[_type == "profile"][0] {  name,  manifesto,  manifestoVimeoId,  note,  reelVimeoId,  email,  links,  treatmentsVideo,  isTreatmentsListVisible,  treatmentsText}
 export type ProfileQueryResult = {
   name: string | null;
   manifesto: {
-    es?: Array<{
-      children?: Array<{
-        marks?: Array<string>;
-        text?: string;
-        _type: "span";
-        _key: string;
-      }>;
-      style?: "normal";
-      listItem?: never;
-      markDefs?: Array<{
-        href?: string;
-        _type: "link";
-        _key: string;
-      }>;
-      level?: number;
-      _type: "block";
-      _key: string;
-    }>;
-    en?: Array<{
-      children?: Array<{
-        marks?: Array<string>;
-        text?: string;
-        _type: "span";
-        _key: string;
-      }>;
-      style?: "normal";
-      listItem?: never;
-      markDefs?: Array<{
-        href?: string;
-        _type: "link";
-        _key: string;
-      }>;
-      level?: number;
-      _type: "block";
-      _key: string;
-    }>;
+    es?: BlockContent;
+    en?: BlockContent;
   } | null;
   manifestoVimeoId: string | null;
   note: {
@@ -468,6 +338,12 @@ export type ProfileQueryResult = {
     _type: "link";
     _key: string;
   }> | null;
+  treatmentsVideo: string | null;
+  isTreatmentsListVisible: boolean | null;
+  treatmentsText: {
+    es?: BlockContent;
+    en?: BlockContent;
+  } | null;
 } | null;
 
 // Source: ../unai/src/lib/projectQuery.ts
@@ -482,42 +358,8 @@ export type ProjectQueryResult = {
   slug: Slug | null;
   date: string | null;
   description: {
-    es?: Array<{
-      children?: Array<{
-        marks?: Array<string>;
-        text?: string;
-        _type: "span";
-        _key: string;
-      }>;
-      style?: "normal";
-      listItem?: never;
-      markDefs?: Array<{
-        href?: string;
-        _type: "link";
-        _key: string;
-      }>;
-      level?: number;
-      _type: "block";
-      _key: string;
-    }>;
-    en?: Array<{
-      children?: Array<{
-        marks?: Array<string>;
-        text?: string;
-        _type: "span";
-        _key: string;
-      }>;
-      style?: "normal";
-      listItem?: never;
-      markDefs?: Array<{
-        href?: string;
-        _type: "link";
-        _key: string;
-      }>;
-      level?: number;
-      _type: "block";
-      _key: string;
-    }>;
+    es?: BlockContent;
+    en?: BlockContent;
   } | null;
   vimeoId: string | null;
   projectType: {
@@ -557,42 +399,8 @@ export type TreatmentProjectsQueryResult = Array<{
   slug: Slug | null;
   date: string | null;
   description: {
-    es?: Array<{
-      children?: Array<{
-        marks?: Array<string>;
-        text?: string;
-        _type: "span";
-        _key: string;
-      }>;
-      style?: "normal";
-      listItem?: never;
-      markDefs?: Array<{
-        href?: string;
-        _type: "link";
-        _key: string;
-      }>;
-      level?: number;
-      _type: "block";
-      _key: string;
-    }>;
-    en?: Array<{
-      children?: Array<{
-        marks?: Array<string>;
-        text?: string;
-        _type: "span";
-        _key: string;
-      }>;
-      style?: "normal";
-      listItem?: never;
-      markDefs?: Array<{
-        href?: string;
-        _type: "link";
-        _key: string;
-      }>;
-      level?: number;
-      _type: "block";
-      _key: string;
-    }>;
+    es?: BlockContent;
+    en?: BlockContent;
   } | null;
   image: {
     url: string | null;
@@ -604,7 +412,7 @@ import "@sanity/client";
 declare module "@sanity/client" {
   interface SanityQueries {
     "*[_type == \"directionProject\"] | order(date desc){\n  _id,\n  title,\n  slug,\n  date,\n  previewId,\n  isHighlighted,\n  projectType -> {en, es},\n  previewImage\n}": DirectionProjectsListQueryResult;
-    "*[_type == \"profile\"][0] {\n  name,\n  manifesto,\n  manifestoVimeoId,\n  note,\n  reelVimeoId,\n  email,\n  links\n}": ProfileQueryResult;
+    "*[_type == \"profile\"][0] {\n  name,\n  manifesto,\n  manifestoVimeoId,\n  note,\n  reelVimeoId,\n  email,\n  links,\n  treatmentsVideo,\n  isTreatmentsListVisible,\n  treatmentsText\n}": ProfileQueryResult;
     "*[_type == \"directionProject\" && slug.current == $slug][0]{\n  _id,\n  title,\n  slug,\n  date,\n  description,\n  vimeoId,\n  projectType -> {en, es},\n  credits,\n  images[]{\n    _key, \n    asset,\n    \"dimensions\": asset->metadata.dimensions,\n  },\n}": ProjectQueryResult;
     "*[_type == \"treatmentProject\"] {\n  _id,\n  title,\n  slug,\n  date,\n  description,\n  image { \"url\": asset->url },\n}": TreatmentProjectsQueryResult;
   }
