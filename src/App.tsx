@@ -75,7 +75,7 @@ function App() {
 
       <section
         id="direction"
-        className="_pt-[50vh] flex w-full items-center pb-[50vh]"
+        className="flex w-full items-center pt-6 pb-[50vh]"
       >
         <Direction />
 
