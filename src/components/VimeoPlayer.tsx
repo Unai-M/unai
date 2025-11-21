@@ -7,6 +7,7 @@ interface VimeoPlayerProps {
   background?: number;
   loop?: number;
   quality?: string;
+  controls?: number;
 }
 
 export default function VimeoPlayer({
@@ -15,6 +16,7 @@ export default function VimeoPlayer({
   background = 0,
   loop = 0,
   quality = "720p",
+  controls = 1,
 }: VimeoPlayerProps) {
   const { id: vimeoId, hash: vimeoHash } = getVimeoId(url);
   const iframeRef = useRef<HTMLIFrameElement | null>(null);
@@ -65,7 +67,7 @@ export default function VimeoPlayer({
 
   const src = `https://player.vimeo.com/video/${vimeoId}?${
     vimeoHash ? `h=${vimeoHash}&` : ""
-  }badge=0&autopause=0&player_id=0&app_id=58479&background=${background}&autoplay=${autoplay}&quality=${quality}&loop=${loop}`;
+  }badge=0&autopause=0&player_id=0&app_id=58479&background=${background}&autoplay=${autoplay}&quality=${quality}&loop=${loop}&controls=${controls}`;
 
   return background === 1 ? (
     <div className="absolute inset-0 overflow-hidden bg-black">
