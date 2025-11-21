@@ -66,7 +66,9 @@ export default function Archive() {
                 setHoveredProject(null);
               }}
             >
-              <div className="align-items-center grid grid-cols-2 gap-4">
+              <div
+                className={`align-items-center grid grid-cols-2 gap-4 ${isHovering && hoveredProject?._id !== project._id ? "opacity-50" : ""} transform transition duration-500 ease-in-out`}
+              >
                 <span className="justify-self-end font-mono text-sm">
                   {project.date ?? project.date}
                 </span>
@@ -99,10 +101,10 @@ export default function Archive() {
               <img
                 src={urlFor(hoveredProject.previewImage)
                   .format("webp")
-                  .width(800)
+                  .width(1000)
                   .url()}
                 alt=""
-                className="max-h-[95vh] max-w-[800px] rounded-sm object-contain opacity-80"
+                className="max-h-[95vh] max-w-[1000px] rounded-sm object-contain opacity-70"
               />
             </motion.div>
           )}
