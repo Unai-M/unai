@@ -29,7 +29,7 @@ export default function Treatment() {
         transition: { delay: 0.15, duration: 0.5 },
       }}
       transition={{ duration: 0.5, ease: "easeOut" }}
-      className="no-doc-scroll fixed inset-0 z-20 flex w-full origin-left justify-center bg-black"
+      className="no-doc-scroll fixed inset-0 z-20 flex w-full origin-left justify-center overflow-y-auto bg-black pt-16 pb-32"
     >
       {isLoading || (isProfileLoading && <Loading />)}
 
@@ -42,35 +42,39 @@ export default function Treatment() {
           scaleX: 1,
           transition: { duration: 0.15 },
         }}
-        className="flex flex-col justify-center gap-8 px-8 py-16"
+        className="my-auto h-fit"
       >
-        {profile?.treatmentsVideo && (
-          <div className="w-1/2">
-            <VimeoPlayer
-              url={profile.treatmentsVideo}
-              autoplay={1}
-              loop={1}
-              controls={0}
-            />
-          </div>
-        )}
+        <div className="mx-auto w-[80vw] max-w-7xl columns-1 flex-col gap-4 pt-8 lg:columns-2">
+          {profile?.treatmentsVideo && (
+            <div className="mb-6 w-full">
+              <VimeoPlayer
+                url={profile.treatmentsVideo}
+                autoplay={1}
+                loop={1}
+                controls={0}
+                muted={1}
+              />
+            </div>
+          )}
 
-        {profile?.treatmentsText?.es && (
-          <div className="mx-auto w-[80vw] max-w-7xl columns-2 flex-col gap-4 pt-8">
-            <PortableText
-              value={
-                profile.treatmentsText[language] || profile.treatmentsText.es
-              }
-            />
-          </div>
-        )}
+          {profile?.treatmentsText?.es && (
+            <div className="pt-2">
+              <PortableText
+                value={
+                  profile.treatmentsText[language] || profile.treatmentsText.es
+                }
+                components={BlockContentComponent}
+              />
+            </div>
+          )}
+        </div>
 
         {profile?.isTreatmentsListVisible && (
-          <div className="flex flex-col overflow-y-auto px-8 pt-8">
+          <div className="flex flex-col px-8 pt-8">
             {data?.map((project) => (
-              <div key={project._id} className="grid grid-cols-2 gap-4">
+              <div key={project._id} className="grid gap-4 sm:grid-cols-2">
                 {project.title && (
-                  <h2 className="font-display justify-self-end leading-none font-black">
+                  <h2 className="font-display leading-none font-black sm:justify-self-end">
                     {project.title[language]}
                   </h2>
                 )}

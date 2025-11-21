@@ -33,7 +33,7 @@ export default function Archive() {
             }
       }
       transition={{ duration: 0.5, ease: "easeOut" }}
-      className="no-doc-scroll fixed inset-0 z-20 flex origin-right justify-center bg-black py-24"
+      className="no-doc-scroll fixed inset-0 z-20 flex w-full origin-right justify-center overflow-y-auto bg-black py-24"
     >
       {isLoading && <Loading />}
       <motion.div
@@ -49,7 +49,7 @@ export default function Archive() {
                 transition: { duration: 0.15 },
               }
         }
-        className={`${data?.length && data.length > 18 ? "border-foreground/50 border-b" : ""} flex flex-col justify-center gap-1 overflow-y-auto px-8 pb-2`}
+        className={`${data?.length && data.length > 18 ? "border-foreground/50 border-b" : ""} my-auto flex h-fit flex-col justify-center gap-1 px-8 pb-2`}
       >
         {data?.map((project) => {
           return (
