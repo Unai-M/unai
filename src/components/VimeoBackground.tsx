@@ -1,23 +1,20 @@
 import { useState, useRef, useEffect } from "react";
 import { motion } from "motion/react";
-
-// TODO: clean and refactor this component
+import { getVimeoId } from "@/utils/getVimeoId";
+import { useProfile } from "@/hooks/useProfile";
+import ErrorPage from "../pages/ErrorPage";
 
 interface VimeoBackgroundProps {
-  // backgroundImageUrl: string | null;
-  vimeoId?: string;
-  vimeoHash?: string;
   isVisible: boolean;
 }
 
 export default function VimeoBackground({
-  // backgroundImageUrl,
-  vimeoId = "920256294",
-  vimeoHash = "514a358307",
   isVisible = true,
 }: VimeoBackgroundProps) {
   const [isLoaded, setIsLoaded] = useState(false);
   const iframeRef = useRef(null);
+  const { data, isLoading, error } = useProfile();
+  const { id: vimeoId, hash: vimeoHash } = getVimeoId(data?.reelVimeoId ?? "");
 
   useEffect(() => {
     setIsLoaded(false);
@@ -46,18 +43,15 @@ export default function VimeoBackground({
 
     window.addEventListener("message", handleMessage);
     return () => window.removeEventListener("message", handleMessage);
-  }, [vimeoId]);
+  }, [vimeoId, vimeoHash]);
+
+  if (error) return <ErrorPage error={error} />;
 
   return (
     <>
       <div
         className={`pointer-events-none fixed inset-0 -z-10 h-screen w-full overflow-hidden`}
       >
-        {/* <img */}
-        {/*   src={backgroundImageUrl + "?fm=webp"} */}
-        {/*   alt="" */}
-        {/*   className="absolute inset-0 h-full w-full scale-100 object-cover" */}
-        {/* /> */}
         <div
           style={{
             padding: "0",
@@ -89,25 +83,23 @@ export default function VimeoBackground({
               animate={{ opacity: isLoaded ? 1 : 0 }}
               transition={{ duration: 1, ease: "easeInOut" }}
               exit={{ opacity: 0 }}
-              title={vimeoId}
+              // title={vimeoId}
             ></motion.iframe>
+          )}
+
+          {(!isLoaded || isLoading) && (
+            // TODO: hacer animacion
+            <motion.div
+              className="font-display flex h-screen items-center text-[7.715vw] leading-none tracking-tight [font-variation-settings:'opsz'_80]"
+              initial={{ scaleY: 10, y: 0 }}
+              animate={{ scaleY: 1, y: 0 }}
+              transition={{ duration: 3, ease: "easeInOut" }}
+            >
+              UNAI MARIA DE AMORRORTU
+            </motion.div>
           )}
         </div>
       </div>
-
-      {/* <div
-        className="bg-background/15 pointer-events-none absolute inset-0 backdrop-blur-md"
-        style={{
-          maskImage: `
-              radial-gradient(ellipse 60% 70% at center, transparent 50%, black 90%)
-            `,
-          WebkitMaskImage: `
-              radial-gradient(ellipse 60% 70% at center, transparent 50%, black 90%)
-            `,
-        }}
-      /> */}
-
-      {/* <div className="pointer-events-none fixed inset-0 h-screen w-full bg-[#c1c9bf67] mix-blend-color-burn"></div> */}
     </>
   );
 }
