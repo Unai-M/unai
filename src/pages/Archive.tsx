@@ -73,7 +73,7 @@ export default function Archive() {
               }}
             >
               <div
-                className={`align-items-center mb-2 grid sm:mb-1 sm:grid-cols-2 sm:gap-4 ${isHovering && hoveredProject?._id !== project._id ? "opacity-50" : ""} transform transition duration-500 ease-in-out`}
+                className={`align-items-center scrollbar-hidden mb-2 grid sm:mb-1 sm:grid-cols-2 sm:gap-4 ${isHovering && hoveredProject?._id !== project._id ? "opacity-50" : ""} transform transition duration-500 ease-in-out`}
               >
                 <span className="font-mono text-sm sm:justify-self-end">
                   {project.date ?? project.date}

@@ -30,7 +30,7 @@ export default function Treatment() {
         transition: { delay: 0.15, duration: 0.5 },
       }}
       transition={{ duration: 0.5, ease: "easeOut" }}
-      className="no-doc-scroll fixed inset-0 z-20 flex w-full origin-left justify-center overflow-y-auto bg-black pt-16 pb-32"
+      className="no-doc-scroll scrollbar-hidden fixed inset-0 z-20 flex w-full origin-left justify-center overflow-y-auto bg-black pt-16 pb-32"
     >
       {isLoading || (isProfileLoading && <Loading />)}
 

@@ -186,3 +186,11 @@
 :root:has(.no-doc-scroll) {
   overflow: hidden;
 }
+
+.scrollbar-hidden {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.scrollbar-hidden::-webkit-scrollbar {
+  display: none;
+}
