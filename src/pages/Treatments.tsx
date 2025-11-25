@@ -7,6 +7,7 @@ import { PortableText } from "@portabletext/react";
 import ErrorPage from "./ErrorPage";
 import { useProfile } from "@/hooks/useProfile";
 import VimeoPlayer from "@/components/VimeoPlayer";
+import useContact from "@/hooks/useContact";
 
 export default function Treatment() {
   const { data, isLoading, error } = useTreatmentProjects();
@@ -16,6 +17,7 @@ export default function Treatment() {
     isLoading: isProfileLoading,
     error: profileError,
   } = useProfile();
+  const { setIsContactOpen } = useContact();
 
   if (error || profileError) return <ErrorPage error={error} />;
 
@@ -44,7 +46,7 @@ export default function Treatment() {
         }}
         className="my-auto h-fit"
       >
-        <div className="mx-auto w-[80vw] max-w-7xl columns-1 flex-col gap-4 pt-8 lg:columns-2">
+        <div className="mx-auto w-[80vw] max-w-7xl columns-1 flex-col gap-4 pt-8">
           {profile?.treatmentsVideo && (
             <div className="mb-6 w-full">
               <VimeoPlayer
@@ -57,16 +59,28 @@ export default function Treatment() {
             </div>
           )}
 
-          {profile?.treatmentsText?.es && (
-            <div className="pt-2">
-              <PortableText
-                value={
-                  profile.treatmentsText[language] || profile.treatmentsText.es
-                }
-                components={BlockContentComponent}
-              />
-            </div>
-          )}
+          {/* {profile?.treatmentsText?.es && ( */}
+          {/*   <div className="pt-2"> */}
+          {/*     <PortableText */}
+          {/*       value={ */}
+          {/*         profile.treatmentsText[language] || profile.treatmentsText.es */}
+          {/*       } */}
+          {/*       components={BlockContentComponent} */}
+          {/*     /> */}
+          {/*   </div> */}
+          {/* )} */}
+          <p className="mb-4 text-center font-mono text-xs opacity-70">
+            <span
+              className="cursor-pointer font-bold underline"
+              onClick={() => {
+                setIsContactOpen(true);
+              }}
+            >
+              Esribime
+            </span>{" "}
+            si querés ver más o si te gustaría conversar sobre cómo puedo
+            aportar a tu proyecto.
+          </p>
         </div>
 
         {profile?.isTreatmentsListVisible && (
