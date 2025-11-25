@@ -1,11 +1,12 @@
 import { UserRound } from "lucide-react";
-import { useState, useRef } from "react";
+import { useRef } from "react";
 import { useProfile } from "../hooks/useProfile";
 import useLanguage from "@/hooks/useLanguage";
 import { motion, AnimatePresence } from "motion/react";
+import useContact from "@/hooks/useContact";
 
 export default function ContactButton() {
-  const [isOpen, setIsOpen] = useState(false);
+  const { isContactOpen, setIsContactOpen } = useContact();
   const buttonRef = useRef<HTMLDivElement>(null);
 
   return (
@@ -17,7 +18,7 @@ export default function ContactButton() {
         ref={buttonRef}
         onClick={(e) => {
           e.stopPropagation();
-          setIsOpen((prev) => !prev);
+          setIsContactOpen((prev) => !prev);
         }}
         className="text-blue bg-foreground z-20 flex size-6 cursor-pointer items-center justify-center rounded-full transition-colors hover:bg-amber-500"
       >
@@ -25,7 +26,9 @@ export default function ContactButton() {
       </motion.div>
 
       <AnimatePresence>
-        {isOpen && <ContactWindow onClose={() => setIsOpen(false)} />}
+        {isContactOpen && (
+          <ContactWindow onClose={() => setIsContactOpen(false)} />
+        )}
       </AnimatePresence>
     </>
   );

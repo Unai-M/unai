@@ -5,6 +5,7 @@ import App from "./App.tsx";
 import { BrowserRouter } from "react-router";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { LangugeProvider } from "./context/LanguageContext.tsx";
+import { ContactProvider } from "./context/ContactContext.tsx";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -19,9 +20,11 @@ createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <QueryClientProvider client={queryClient}>
       <LangugeProvider>
-        <BrowserRouter>
-          <App />
-        </BrowserRouter>
+        <ContactProvider>
+          <BrowserRouter>
+            <App />
+          </BrowserRouter>
+        </ContactProvider>
       </LangugeProvider>
     </QueryClientProvider>
   </StrictMode>,
