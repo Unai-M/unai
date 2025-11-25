@@ -2,7 +2,7 @@ import { PortableText } from "@portabletext/react";
 import { useProfile } from "@/hooks/useProfile";
 import Loading from "@/components/Loading";
 import useLanguage from "@/hooks/useLanguage";
-import { BlockContentComponent } from "../components/BlockContentComponent";
+import { useBlockContentComponents } from "@/components/BlockContentComponent";
 import ErrorPage from "./ErrorPage";
 import { ArrowDown } from "lucide-react";
 import { motion } from "motion/react";
@@ -10,6 +10,7 @@ import { motion } from "motion/react";
 export default function Manifesto() {
   const { data: profile, isLoading: isProfileLoading, error } = useProfile();
   const { language } = useLanguage();
+  const components = useBlockContentComponents();
 
   if (isProfileLoading) return <Loading />;
   if (error) return <ErrorPage error={error} />;
@@ -29,7 +30,7 @@ export default function Manifesto() {
     >
       <PortableText
         value={Array.isArray(manifesto) ? manifesto : []}
-        components={BlockContentComponent}
+        components={components}
       />
       <motion.div
         className="mt-6 flex w-full justify-center opacity-70"

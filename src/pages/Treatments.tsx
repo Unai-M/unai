@@ -2,12 +2,11 @@ import { useTreatmentProjects } from "@/hooks/useTreatmentProjects";
 import Loading from "@/components/Loading";
 import useLanguage from "@/hooks/useLanguage";
 import { motion } from "motion/react";
-import { BlockContentComponent } from "@/components/BlockContentComponent";
+import { useBlockContentComponents } from "@/components/BlockContentComponent";
 import { PortableText } from "@portabletext/react";
 import ErrorPage from "./ErrorPage";
 import { useProfile } from "@/hooks/useProfile";
 import VimeoPlayer from "@/components/VimeoPlayer";
-import useContact from "@/hooks/useContact";
 
 export default function Treatment() {
   const { data, isLoading, error } = useTreatmentProjects();
@@ -17,7 +16,7 @@ export default function Treatment() {
     isLoading: isProfileLoading,
     error: profileError,
   } = useProfile();
-  const { setIsContactOpen } = useContact();
+  const components = useBlockContentComponents();
 
   if (error || profileError) return <ErrorPage error={error} />;
 
@@ -48,7 +47,7 @@ export default function Treatment() {
       >
         <div className="mx-auto w-[80vw] max-w-7xl columns-1 flex-col gap-4 pt-8">
           {profile?.treatmentsVideo && (
-            <div className="mb-6 w-full">
+            <div className="mb-4 w-full">
               <VimeoPlayer
                 url={profile.treatmentsVideo}
                 autoplay={1}
@@ -59,28 +58,16 @@ export default function Treatment() {
             </div>
           )}
 
-          {/* {profile?.treatmentsText?.es && ( */}
-          {/*   <div className="pt-2"> */}
-          {/*     <PortableText */}
-          {/*       value={ */}
-          {/*         profile.treatmentsText[language] || profile.treatmentsText.es */}
-          {/*       } */}
-          {/*       components={BlockContentComponent} */}
-          {/*     /> */}
-          {/*   </div> */}
-          {/* )} */}
-          <p className="mb-4 text-center font-mono text-xs opacity-70">
-            <span
-              className="cursor-pointer font-bold underline"
-              onClick={() => {
-                setIsContactOpen(true);
-              }}
-            >
-              Esribime
-            </span>{" "}
-            si querés ver más o si te gustaría conversar sobre cómo puedo
-            aportar a tu proyecto.
-          </p>
+          {profile?.treatmentsText?.es && (
+            <div className="mb-4 text-center font-mono text-xs opacity-70">
+              <PortableText
+                value={
+                  profile.treatmentsText[language] || profile.treatmentsText.es
+                }
+                components={components}
+              />
+            </div>
+          )}
         </div>
 
         {profile?.isTreatmentsListVisible && (
@@ -98,7 +85,7 @@ export default function Treatment() {
                       value={
                         project.description[language] ?? project.description.es
                       }
-                      components={BlockContentComponent}
+                      components={components}
                     />
                   </div>
                 )}
