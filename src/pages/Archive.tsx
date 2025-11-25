@@ -7,6 +7,7 @@ import { NavLink } from "react-router";
 import { useState } from "react";
 import { urlFor } from "../lib/sanityImageUrl";
 import type { DirectionProjectsListQueryResult } from "@/lib/types";
+import useIsMobile from "@/hooks/useIsMobile";
 
 export default function Archive() {
   const { data, isLoading, error } = useDirectionProjectsList();
@@ -16,6 +17,7 @@ export default function Archive() {
   const [hoveredProject, setHoveredProject] = useState<
     DirectionProjectsListQueryResult[number] | null
   >(null);
+  const isMobile = useIsMobile();
 
   if (error) return <ErrorPage error={error} />;
 
@@ -49,7 +51,7 @@ export default function Archive() {
                 transition: { duration: 0.15 },
               }
         }
-        className={`${data?.length && data.length > 18 ? "border-foreground/50 border-b" : ""} my-auto flex h-fit flex-col justify-center gap-1 px-8 pb-2`}
+        className="my-auto flex h-fit w-full flex-col justify-center gap-1 px-8 pb-2"
       >
         {data?.map((project) => {
           return (
@@ -58,21 +60,25 @@ export default function Archive() {
               to={`/direccion/${project.slug?.current}`}
               onClick={() => setIsNavigating(true)}
               onMouseEnter={() => {
-                setIsHovering(true);
-                setHoveredProject(project);
+                if (!isMobile) {
+                  setIsHovering(true);
+                  setHoveredProject(project);
+                }
               }}
               onMouseLeave={() => {
-                setIsHovering(false);
-                setHoveredProject(null);
+                if (!isMobile) {
+                  setIsHovering(false);
+                  setHoveredProject(null);
+                }
               }}
             >
               <div
-                className={`align-items-center grid grid-cols-2 gap-4 ${isHovering && hoveredProject?._id !== project._id ? "opacity-50" : ""} transform transition duration-500 ease-in-out`}
+                className={`align-items-center mb-2 grid sm:mb-1 sm:grid-cols-2 sm:gap-4 ${isHovering && hoveredProject?._id !== project._id ? "opacity-50" : ""} transform transition duration-500 ease-in-out`}
               >
-                <span className="justify-self-end font-mono text-sm">
+                <span className="font-mono text-sm sm:justify-self-end">
                   {project.date ?? project.date}
                 </span>
-                <div className="flex items-center gap-1">
+                <div className="items-center gap-1 sm:flex">
                   {project.title && (
                     <h3 className="font-display leading-none font-black uppercase">
                       {project.title[language] ?? project.title.es}
