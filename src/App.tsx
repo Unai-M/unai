@@ -13,6 +13,7 @@ import BackgroundDecorations from "./components/BackgroundDecorations";
 import ManifestoFilm from "./pages/ManifestoFilm";
 import ManifestoFilmBackground from "./components/ManifestoFilmBackground";
 import Sidebar from "./components/Sidebar";
+import SiteTitle from "./components/SiteTitle";
 
 function App() {
   const startRef = useRef(null);
@@ -56,11 +57,7 @@ function App() {
         {!isEndInView && <VimeoBackground isVisible={true} />}
       </AnimatePresence>
 
-      <div className="text-background absolute flex w-full items-center justify-center font-black">
-        <h1 className="font-display _text-[6.5vw] text-[7vw] leading-none tracking-tight [font-variation-settings:'opsz'_80]">
-          UNAI MARIA DE AMORRORTU
-        </h1>
-      </div>
+      <SiteTitle />
 
       <AnimatePresence>
         {isManifestoFilmInView && <ManifestoFilmBackground key="maniFilmBg" />}
