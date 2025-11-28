@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from "react";
-import { motion } from "motion/react";
+import { AnimatePresence, motion } from "motion/react";
 import { getVimeoId } from "@/utils/getVimeoId";
 import { useProfile } from "@/hooks/useProfile";
 import ErrorPage from "../pages/ErrorPage";
@@ -87,17 +87,16 @@ export default function VimeoBackground({
             ></motion.iframe>
           )}
 
-          {(!isLoaded || isLoading) && (
-            // TODO: hacer animacion
-            <motion.div
-              className="font-display flex h-screen items-center text-[7.715vw] leading-none tracking-tight [font-variation-settings:'opsz'_80]"
-              initial={{ scaleY: 10, y: 0 }}
-              animate={{ scaleY: 1, y: 0 }}
-              transition={{ duration: 3, ease: "easeInOut" }}
-            >
-              UNAI MARIA DE AMORRORTU
-            </motion.div>
-          )}
+          <AnimatePresence>
+            {(!isLoaded || isLoading) && (
+              <motion.div
+                initial={{ opacity: 1, scaleY: 1, scaleX: 1 }}
+                exit={{ opacity: 0, scaleY: 0, scaleX: 10 }}
+                transition={{ duration: 0.7, ease: "easeInOut" }}
+                className="bg-accent fixed inset-0 z-1000 flex h-screen w-full origin-bottom items-center justify-center"
+              ></motion.div>
+            )}
+          </AnimatePresence>
         </div>
       </div>
     </>
