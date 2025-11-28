@@ -22,7 +22,7 @@ export default function Lightbox({
     >
       {!imageLoaded && (
         <div className="fixed flex items-center justify-center">
-          <div className="h-12 w-12 animate-spin rounded-full border-2 border-solid border-white border-t-transparent"></div>
+          <div className="border-blue h-12 w-12 animate-spin rounded-full border-2 border-solid border-t-transparent"></div>
         </div>
       )}
       {currentImage && (
