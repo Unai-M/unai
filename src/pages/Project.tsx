@@ -5,7 +5,6 @@ import Loading from "@/components/Loading";
 import ErrorPage from "./ErrorPage";
 import VimeoPlayer from "@/components/VimeoPlayer";
 import ProjectInfo from "@/components/ProjectInfo";
-import Lines from "@/components/Lines";
 import useLanguage from "@/hooks/useLanguage";
 
 export default function Project() {
@@ -33,10 +32,6 @@ export default function Project() {
         </>
       ) : (
         <>
-          <div className="-z-10">
-            <Lines />
-          </div>
-
           <div className="fixed top-0 left-0 flex w-full items-start justify-between px-2 pt-1 uppercase">
             <h1 className="font-display text-4xl font-black">
               {data?.title?.es && (data.title[language] || data.title.es)}
