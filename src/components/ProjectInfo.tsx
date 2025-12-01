@@ -13,13 +13,21 @@ export default function ProjectInfo({ data }: ProjectInfoProps) {
 
   return (
     <div className="mx-auto flex w-[80vw] flex-col items-center justify-center gap-16 pt-16">
-      <div className="grid w-full grid-cols-1 gap-8 sm:grid-cols-3">
-        <div className="col-span-2">
+      <div className="flex w-full items-start">
+        <p className="max-w-prose text-lg">
           {data?.description?.es && (
             <PortableText
               value={data.description[language] || data.description.es}
             />
           )}
+        </p>
+      </div>
+
+      <div className="grid w-full grid-cols-1 gap-8 sm:grid-cols-3">
+        <div className="col-span-2">
+          <div className="">
+            {data?.images && <ImageGallery images={data.images} />}
+          </div>
         </div>
 
         <div className="text-background">
@@ -45,10 +53,6 @@ export default function ProjectInfo({ data }: ProjectInfoProps) {
               </div>
             ))}
         </div>
-      </div>
-
-      <div className="">
-        {data?.images && <ImageGallery images={data.images} />}
       </div>
     </div>
   );
