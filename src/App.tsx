@@ -81,7 +81,7 @@ function App() {
             <Route path="/" element={<div />} />
             <Route path="/direccion/:slug" element={<Project />} />
             <Route path="/tratamientos" element={<Treatments />} />
-            <Route path="/archivo" element={<Archive />} />
+            <Route path="/direccion" element={<Archive />} />
           </Routes>
         </AnimatePresence>
       </section>

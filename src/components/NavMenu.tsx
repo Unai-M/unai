@@ -25,13 +25,8 @@ export default function NavMenu() {
     () => [
       {
         key: "direction",
-        label: language === "es" ? "dirección" : "direction",
+        label: language === "es" ? "inicio" : "home",
         onClick: () => scrollToSection("direction"),
-      },
-      {
-        key: "treatments",
-        label: language === "es" ? "tratamientos" : "treatments",
-        onClick: () => navigate("/tratamientos"),
       },
       {
         key: "manifesto",
@@ -40,8 +35,13 @@ export default function NavMenu() {
       },
       {
         key: "archive",
-        label: language === "es" ? "archivo" : "archive",
-        onClick: () => navigate("/archivo"),
+        label: language === "es" ? "dirección" : "direction",
+        onClick: () => navigate("/direccion"),
+      },
+      {
+        key: "treatments",
+        label: language === "es" ? "tratamientos" : "treatments",
+        onClick: () => navigate("/tratamientos"),
       },
     ],
     [language, navigate, scrollToSection],
