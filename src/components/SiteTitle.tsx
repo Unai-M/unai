@@ -12,7 +12,7 @@ export default function SiteTitle() {
         <StaggeredText text="Unai Maria de Amorrortu" />
       </motion.h1>
       <div className="w-full overflow-hidden">
-        <motion.h2 className="text-blue _opacity-50 flex w-full justify-between px-2 uppercase">
+        <motion.h2 className="text-blue flex w-full justify-between px-0.5 text-sm uppercase sm:px-2 sm:text-base">
           <motion.span
             initial={{ y: "-100%" }}
             animate={{ y: 0 }}
