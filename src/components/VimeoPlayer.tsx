@@ -69,7 +69,7 @@ export default function VimeoPlayer({
 
   const src = `https://player.vimeo.com/video/${vimeoId}?${
     vimeoHash ? `h=${vimeoHash}&` : ""
-  }badge=0&autopause=0&player_id=0&app_id=58479&background=${background}&autoplay=${autoplay}&quality=${quality}&loop=${loop}&controls=${controls}&muted=${muted}&byline=false&portrait=false&vimeo_logo=false&pip=false&title=false&like=false&transcript=false&cc=false`;
+  }badge=0&autopause=0&player_id=0&app_id=58479&background=${background}&autoplay=${autoplay}&quality=${quality}&loop=${loop}&controls=${controls}&muted=${muted}&byline=false&portrait=false&vimeo_logo=false&pip=false&title=false&like=false&transcript=false&cc=false&color=1770c1`;
 
   return background === 1 ? (
     <div className="absolute inset-0 overflow-hidden bg-black">
