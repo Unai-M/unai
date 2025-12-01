@@ -7,7 +7,7 @@ import { NavLink } from "react-router";
 import { useState } from "react";
 import { urlFor } from "../lib/sanityImageUrl";
 import type { DirectionProjectsListQueryResult } from "@/lib/types";
-import useIsMobile from "@/hooks/useIsMobile";
+import useCanHover from "@/hooks/useCanHover";
 
 export default function Archive() {
   const { data, isLoading, error } = useDirectionProjectsList();
@@ -17,7 +17,7 @@ export default function Archive() {
   const [hoveredProject, setHoveredProject] = useState<
     DirectionProjectsListQueryResult[number] | null
   >(null);
-  const isMobile = useIsMobile();
+  const canHover = useCanHover();
 
   if (error) return <ErrorPage error={error} />;
 
@@ -60,13 +60,13 @@ export default function Archive() {
               to={`/direccion/${project.slug?.current}`}
               onClick={() => setIsNavigating(true)}
               onMouseEnter={() => {
-                if (!isMobile) {
+                if (canHover) {
                   setIsHovering(true);
                   setHoveredProject(project);
                 }
               }}
               onMouseLeave={() => {
-                if (!isMobile) {
+                if (canHover) {
                   setIsHovering(false);
                   setHoveredProject(null);
                 }
