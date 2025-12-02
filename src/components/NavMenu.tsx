@@ -58,14 +58,16 @@ export default function NavMenu() {
       <div className="ml-[4px] flex w-full items-center justify-center pb-4 text-sm transition duration-1000 sm:text-base">
         {buttons.map(({ key, label, onClick }, index) => (
           <>
-            <button
+            <motion.button
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.95 }}
               key={key}
               onClick={onClick}
               // ${index === 0 ? "rounded-l-full rounded-r-xs" : index === buttons.length - 1 ? "rounded-l-xs rounded-r-full" : "rounded-xs"}
               className={`text-blue bg-foreground w-36 cursor-pointer rounded-full px-1 text-center uppercase transition-colors hover:bg-amber-500 sm:px-0`}
             >
               {label}
-            </button>
+            </motion.button>
             {index !== buttons.length - 1 && (
               <div className="bg-foreground/50 h-[1px] w-2 sm:w-4" />
             )}

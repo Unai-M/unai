@@ -30,7 +30,7 @@ export default function Manifesto() {
     >
       <h1 className="font-display mb-2 text-6xl sm:text-9xl">
         {language === "es" ? "Manifiesto" : "Manifesto"}
-        <span className="text-accent animate-caret-blink inline-block -translate-y-1 sm:-translate-y-3">
+        <span className="text-accent animate-caret-blink inline-block -translate-y-1 select-none sm:-translate-y-3">
           _
         </span>
       </h1>
@@ -39,7 +39,7 @@ export default function Manifesto() {
         components={components}
       />
       <motion.div
-        className="mt-6 flex w-full justify-center opacity-70"
+        className="mt-6 flex w-full justify-center opacity-60"
         animate={{ y: 10 }}
         transition={{
           duration: 1,

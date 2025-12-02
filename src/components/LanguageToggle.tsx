@@ -10,6 +10,8 @@ export default function LanguageToggle() {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
+      whileHover={{ scale: 1.1 }}
+      whileTap={{ scale: 0.95 }}
       className="text-blue bg-foreground z-20 size-6 cursor-pointer rounded-full text-sm uppercase transition-colors hover:bg-amber-500"
       onClick={() => {
         setLanguage(language === "es" ? "en" : "es");

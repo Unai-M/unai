@@ -15,6 +15,8 @@ export default function ContactButton() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
+        whileHover={{ scale: 1.1 }}
+        whileTap={{ scale: 0.95 }}
         ref={buttonRef}
         onClick={(e) => {
           e.stopPropagation();

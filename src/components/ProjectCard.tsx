@@ -50,7 +50,9 @@ export default function ProjectCard({ project }: { project: Project }) {
 
           <div className="pointer-events-none absolute inset-0 flex w-full items-end justify-between bg-gradient-to-t from-black/70 to-transparent to-60% p-5">
             {project.title && (
-              <h3 className="font-display leading-none uppercase">
+              <h3
+                className={`font-display leading-none uppercase ${isHovering ? "animate-pulse" : ""}`}
+              >
                 {project.title[language] ?? project.title.es}
               </h3>
             )}
