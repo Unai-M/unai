@@ -6,7 +6,7 @@ export default function BackgroundDecorations() {
     <div className="absolute -z-10">
       {/* gradient overelay */}
       <motion.div
-        className="_brightness-50 _grayscale-80 pointer-events-none fixed -z-10 h-full w-full bg-white/10 backdrop-blur-[200px]"
+        className="pointer-events-none fixed -z-10 h-full w-full bg-white/10 backdrop-blur-[200px]"
         style={{
           backgroundImage: `
         radial-gradient(circle at 50% 50%, transparent 0%, rgba(23, 112, 193, 0.99) 80%)`,

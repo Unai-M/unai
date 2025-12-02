@@ -98,13 +98,13 @@ const VimeoHoverPlayer: React.FC<VimeoHoverPlayerProps> = ({
   }, [isHovering]);
 
   return (
-    <div className={`_overflow-hidden relative ${className}`}>
+    <div className={`relative ${className}`}>
       <div className="absolute inset-0 flex items-center justify-center bg-black">
         <img className="w-full" src={imageUrl} alt="" />
       </div>
       <div
         ref={containerRef}
-        className={`_h-full _w-full pointer-events-none transition-opacity duration-400 ease-in-out ${
+        className={`pointer-events-none transition-opacity duration-400 ease-in-out ${
           isHovering ? "opacity-100" : "opacity-0"
         }`}
       />

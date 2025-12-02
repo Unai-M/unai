@@ -46,7 +46,7 @@ export default function Treatment() {
         className="my-auto h-fit"
       >
         <div className="fixed top-0 left-0 flex w-full items-start justify-center px-2 pt-1 uppercase">
-          <h1 className="font-display _font-black text-4xl">
+          <h1 className="font-display text-4xl">
             {language === "es" ? "Tratamientos" : "Treatments"}
           </h1>
         </div>

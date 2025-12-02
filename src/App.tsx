@@ -69,10 +69,7 @@ function App() {
       </AnimatePresence>
 
       {canHover && <Crosshair />}
-      <div
-        className="_mb-10 pointer-events-none h-screen w-full"
-        ref={startRef}
-      />
+      <div className="pointer-events-none h-screen w-full" ref={startRef} />
 
       <section
         id="direction"

@@ -55,7 +55,7 @@ export default function Archive() {
         className="my-auto flex h-fit w-full flex-col justify-center gap-1 px-8 pb-2"
       >
         <div className="fixed top-0 left-0 flex w-full items-start justify-center px-2 pt-1 uppercase">
-          <h1 className="font-display _font-black text-4xl">
+          <h1 className="font-display text-4xl">
             {language === "es" ? "Dirección" : "Direction"}
           </h1>
         </div>

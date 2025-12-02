@@ -7,7 +7,7 @@ export default function SiteTitle() {
         initial={{ y: 400 }}
         animate={{ y: [400, 400, 0] }}
         transition={{ duration: 3, ease: "easeOut", times: [0, 0.75, 1] }}
-        className="font-display text-blue _text-[6.5vw] _bg-white/80 flex w-full gap-4 text-[7vw] leading-none font-black tracking-tight uppercase [font-variation-settings:'opsz'_80]"
+        className="font-display text-blue flex w-full gap-4 text-[7vw] leading-none font-black tracking-tight uppercase [font-variation-settings:'opsz'_80]"
       >
         <StaggeredText text="Unai Maria de Amorrortu" />
       </motion.h1>
