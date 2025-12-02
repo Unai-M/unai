@@ -28,9 +28,9 @@ export default function Manifesto() {
       viewport={{ amount: 0.3 }}
       transition={{ duration: 0.6 }}
     >
-      <h1 className="font-display mb-2 text-7xl sm:text-9xl">
+      <h1 className="font-display mb-2 text-6xl sm:text-9xl">
         {language === "es" ? "Manifiesto" : "Manifesto"}
-        <span className="text-accent animate-caret-blink inline-block -translate-y-3">
+        <span className="text-accent animate-caret-blink inline-block -translate-y-1 sm:-translate-y-3">
           _
         </span>
       </h1>
