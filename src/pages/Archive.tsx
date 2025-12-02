@@ -38,6 +38,7 @@ export default function Archive() {
       className="no-doc-scroll fixed inset-0 z-20 flex w-full origin-right justify-center overflow-y-auto bg-black py-24"
     >
       {isLoading && <Loading />}
+
       <motion.div
         initial={{ opacity: 0, scaleX: 1 }}
         animate={{ opacity: 1, scaleX: 1 }}
@@ -53,6 +54,12 @@ export default function Archive() {
         }
         className="my-auto flex h-fit w-full flex-col justify-center gap-1 px-8 pb-2"
       >
+        <div className="fixed top-0 left-0 flex w-full items-start justify-center px-2 pt-1 uppercase">
+          <h1 className="font-display _font-black text-4xl">
+            {language === "es" ? "Dirección" : "Direction"}
+          </h1>
+        </div>
+
         {data?.map((project) => {
           return (
             <NavLink

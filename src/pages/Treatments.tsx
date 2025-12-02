@@ -45,6 +45,11 @@ export default function Treatment() {
         }}
         className="my-auto h-fit"
       >
+        <div className="fixed top-0 left-0 flex w-full items-start justify-center px-2 pt-1 uppercase">
+          <h1 className="font-display _font-black text-4xl">
+            {language === "es" ? "Tratamientos" : "Treatments"}
+          </h1>
+        </div>
         <div className="mx-auto w-[80vw] max-w-7xl columns-1 flex-col gap-4 pt-8">
           {profile?.treatmentsVideo && (
             <div className="mb-4 w-full">
