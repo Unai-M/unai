@@ -14,12 +14,15 @@ import ManifestoFilm from "./pages/ManifestoFilm";
 import ManifestoFilmBackground from "./components/ManifestoFilmBackground";
 import Sidebar from "./components/Sidebar";
 import SiteTitle from "./components/SiteTitle";
+import Crosshair from "./components/Crosshair";
+import useCanHover from "./hooks/useCanHover";
 
 function App() {
   const startRef = useRef(null);
   const endRef = useRef(null);
   const manifestoFilm = useRef(null);
   const [mounted, setMounted] = useState(false);
+  const canHover = useCanHover();
 
   const isStartInView = useInView(startRef, {
     margin: "-320px 0px 0px 320px",
@@ -65,6 +68,7 @@ function App() {
         {shouldShowUI && <NavMenu />}
       </AnimatePresence>
 
+      {canHover && <Crosshair />}
       <div
         className="_mb-10 pointer-events-none h-screen w-full"
         ref={startRef}
